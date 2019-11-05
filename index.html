@@ -178,8 +178,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="IDEA上传项目到Github时出现Push-rejected-Push-master-to-origin-master-was-rejected-by-remote解决方案"><a href="#IDEA上传项目到Github时出现Push-rejected-Push-master-to-origin-master-was-rejected-by-remote解决方案" class="headerlink" title="IDEA上传项目到Github时出现Push rejected: Push master to origin/master was rejected by remote解决方案"></a>IDEA上传项目到Github时出现Push rejected: Push master to origin/master was rejected by remote解决方案</h1><p>今日上传新项目到github时出现了这个问题，在网上寻找了许多答案都没有解决。<br>最后是发现项目有个文件是超过了100M，由于github的上传大小限制才导致的失败。<br>解决方案1：windows下在项目文件夹下，右上角搜索里输入：“大小：&gt;100M”<br>找到超过了100M的文件，进行内容删减<br>解决方案2：突破github限制，支持单个文件超出100M (使用 Git LFS)</p>
-<p>Git LFS的官方网址在这里： <a href="https://git-lfs.github.com/，官网上有很详细的说明。" target="_blank" rel="noopener">https://git-lfs.github.com/，官网上有很详细的说明。</a></p>
+        <p>今日上传新项目到github时出现了这个问题，在网上寻找了许多答案都没有解决。<br>最后是发现项目有个文件是超过了100M，由于github的上传大小限制才导致的失败。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">解决方案1：windows下在项目文件夹下，右上角搜索里输入：“大小：&gt;100M”</span><br><span class="line">找到超过了100M的文件，进行内容删减</span><br><span class="line">解决方案2：突破github限制，支持单个文件超出100M (使用 Git LFS)</span><br><span class="line"></span><br><span class="line">Git LFS的官方网址在这里： https://git-lfs.github.com/，官网上有很详细的说明。</span><br></pre></td></tr></table></figure>
+
 
       
 
