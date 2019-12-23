@@ -6,17 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/12 | coco的个人博客</title>
+  <title>随机森林(Random Forest ) | coco的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录自己">
+  <meta name="description" content="随机森林是一个具有高度灵活的机器学习算法，随机森林（Random Forest，简称RF）拥有广泛的应用前景,在当前的很多数据集上，相对其他算法有着很大的优势，表现良好.因为随机森林同决策树有着莫大的关系,建议读者先阅读决策树相关的文章. ​     其实从名字上我们就可以做一些联想.森林是什么,森林的主要构成就是树,很多很多的树,随机森林中的树就是决策树,所以随机森林就是由很多决策树构成的整体.">
 <meta name="keywords" content="JAVA,程序员">
-<meta property="og:type" content="website">
-<meta property="og:title" content="coco的个人博客">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2019&#x2F;12&#x2F;index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="随机森林(Random Forest )">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;23&#x2F;%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-Random-Forest&#x2F;index.html">
 <meta property="og:site_name" content="coco的个人博客">
-<meta property="og:description" content="记录自己">
+<meta property="og:description" content="随机森林是一个具有高度灵活的机器学习算法，随机森林（Random Forest，简称RF）拥有广泛的应用前景,在当前的很多数据集上，相对其他算法有着很大的优势，表现良好.因为随机森林同决策树有着莫大的关系,建议读者先阅读决策树相关的文章. ​     其实从名字上我们就可以做一些联想.森林是什么,森林的主要构成就是树,很多很多的树,随机森林中的树就是决策树,所以随机森林就是由很多决策树构成的整体.">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2018112816535857.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20181128171257679.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20181128171801912.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20181128171924416.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20181128172703365.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20181128172809818.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20181128173043976.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-12-23T06:20:45.998Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2018112816535857.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="coco的个人博客" type="application/atom+xml">
   
@@ -165,103 +174,228 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-随机森林-Random-Forest" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      随机森林(Random Forest )
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/23/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-Random-Forest/" class="archive-article-date">
+
+        
+        <a href="/2019/12/23/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-Random-Forest/" class="archive-article-date">
   	<time datetime="2019-12-23T06:13:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-23</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/23/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-Random-Forest/">随机森林(Random Forest )</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>随机森林</strong>是一个具有高度灵活的机器学习算法，随机森林（Random Forest，简称RF）拥有广泛的应用前景,在当前的很多数据集上，相对其他算法有着很大的优势，表现良好.因为随机森林同决策树有着莫大的关系,建议读者先阅读<a href="https://blog.csdn.net/weixin_39445556/article/details/84500844" target="_blank" rel="noopener">决策树</a>相关的文章.</p>
+<p>​     其实从名字上我们就可以做一些联想.森林是什么,森林的主要构成就是树,很多很多的树,随机森林中的树就是决策树,所以随机森林就是由很多决策树构成的整体.那随机怎么理解呢?</p>
+ <a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
-          
+<p><strong>1- 现实中的随机森林</strong></p>
+<p>​     有监督机器学习实际上是让机器拿着模型在数据中学习到一些规律以用来做回归和分类.拿着模型的机器是学生,数据是老师.当我们找到决策树这个老师的时候,可以从它这学到的是:模型应该先以某个维度为的值为基准,进行分裂,然后再以另一个为基准去分裂,最终得到了叶子节点,也就是决策树老师的真传.但是这有一个问题.如果我们所有的知识都从一个老师这学习,那必然会沾染上这个老师的特性,众所周知,决策树老师可是非常容易过拟合的和欠拟合的.那怎么办呢?</p>
+<p>​    在现实中,学校就做了一个很好的例子.总体还是 语文/数学/英语/体育 这么多知识,我们分四个老师来教.每个老师教不同东西,在我们这个例子里边就是,每个老师拿着不同的数据集,所有老师的数据集加起来就是我们原来决策树老师的数据集.我们从不同的老师身上分别学习.那是不是每一位老师的数据集都完全不同呢?当然不是,因为语文老师和体育老师都会教你上课别迟到,数学老师和英语老师都会告诉你高中不许谈恋爱,而且很多时候,体育老师的课都给数学老师上了.所以在我们机器学习中,是从整体的数据集中随机出来很多份子数据集,可以比作有放回的随机抽样,数据集之间是有数据相同的.然后,每一份子数据集扮演原来决策树老师的角色来让我们学习,现在由众多子数据集扮演的决策树老师,我们称为子树.</p>
+<p>​    还有一点需要注意,当我们问所有老师:地球有多重,语文老师的回答应该是:地球的重量等于它承载的所有生命的重量(文艺范).数学老师的回答应该是:地球重5.965×10^24kg.体育老师可能回答:我也不知道.所以,当我们由从一个老师身上学知识,所有问题的答案都来自一个老师转变成了每个问题都由多个老师回答时,我们要分别考虑老师回答的靠不靠谱,也就是给每位老师的回答加一个权重.问地球质量的问题可能数学老师的权重高,体育老师回答不知道对我们没有影响权重可以很低,而假如语文老师的文艺范并不是我们想要的内容,我们需要给他负数的权重.</p>
+<p>​    再假设我们现在要买一本复习资料,而我们手上的钱只够买一本,当询问老师要买什么类型的资料时,语文老师让你买语文资料,数学老师要你买数学习题,体育老师的课不需要复习资料,但是他跟数学老师关系好,此时他建议让你买数学资料.如果这是在随机森林中,我们的结果就是买数学资料.因为投票决定的时候选择票数多的一项.</p>
+<p><strong>2- 随机森林的特点</strong></p>
+<p>​    以上,就是随机森林的比喻.可能太冗长又不太准确,但是我们要从中总结出<strong>随机森林的特点</strong>:</p>
+<p>​    a- 随机森林是由众多的子树构成的. 每一颗子树都是由总数据集的部分数据集得来的,而且子树之间会有数据重复.</p>
+<p>​    b- 选择票数多的结果作为最终结果.</p>
+<p>​    c- 速度快,因为数据抽取和子树生成的过程式可以并行运算的.</p>
+<p>​    当我们使用随机森林来做回归的时候,最终结果的表达就是选用了这个数据集的所有子树中这条样本被分到的叶子节点的y平均.这句话有点长不好意思.</p>
+<p>​     </p>
+<p><strong>3- 随机森林都有哪些随机</strong></p>
+<p>​    在数据集中随机出子数据集,用来生成子树,所以随机数据集的过程(这个过程叫bagging)就必须要知道,我们看随机森林都由哪些随机:</p>
+<p>​    假设我们的数据集是一个表格,一行是一个样本的所有数据,一列是这个样本的一个维度.</p>
+<p>​    a- 随机行数.就是选择一些样本的全部数据抽出来.</p>
+<p>​    b- 随机列,把刚刚抽出来的行,再按比例或固定值随机抽几列</p>
+<p>​    c- 将随机到的列也就是维度重新组合生成新的维度.</p>
+<p>​    抽取数据的方法有了,那到底抽多少份呢?这个是超参数,由使用算法的人来设定.随机森林的其他超参数看下图:</p>
+<p>​    <img src="https://img-blog.csdnimg.cn/2018112816535857.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>​    上图为sklearn.ensemble包中RandomForestClassifier的构造函数,就是随机森林哈.我们可设置的超参数:</p>
+<p>​    a. n_estimators : 随机森林中要多少棵子树,默认是10.</p>
+<p>​    b. criterion : 设置树评判纯度的标准,默认是Gini系数</p>
+<p>​    c. max_depth : 每棵树的最大深度</p>
+<p>​    d. min_samples_split : 分割内部节点所需的最小样本数量</p>
+<p>​    e. max_features : 每棵树保留的维度数量,默认值auto的意思是给所有维度的数开平方,得到的数是要保留维度的个数.</p>
+<p>​    还有好多个,我就不再这里赘述了,大家可以到源码中看随机森林的构造方法,构造方法上面有对所有参数的详细描述.</p>
+<p>​    随机分好数据集和设置参数以后,按照生成决策树的方法生成每一颗子树就行了.</p>
+<p><strong>4- 测试随机森林</strong></p>
+<p>​    生成模型必不可少的步骤就是验证模型,像多元线性回归,逻辑回归和刚刚提到的决策树,都是实用train_test_split()方法来将原来的数据集划分为大小不一的两份(有的时候分三份,训练集,测试集和验证集).随机森林生成的时候是以整体数据为基础进行抽样,它验证的过程有些不同.</p>
+<p>​    假设我们每次随机抽样都抽取N次,1条数据N轮都没有被拿到的概率为(1 - 1/N) ^N,当N足够大时,这个式子约等于1/e,e约等于2.71828…所以我们可以粗略的估计当数据集很大时每次都大概有三分之一的数据没有被抽到.我们可以用每棵树没有抽到的三分之一数据来对这课树进行验证.虽然感觉这样需要对数据进行很多标记,但没关系,这些都是计算机来做的,咱们知道原理就行.</p>
+<p>​    每一次数据抽取比作一次数据分包裹,没抽到的数据就叫做Out Of Bag Data,简称Oob data.</p>
+<p><strong>5-随机森林在数据分类上的表现</strong></p>
+<p>​    我们采用决策树和随机森林分别对一个数据集分类,得到的图片结果如下:</p>
+<p>​     随机森林抽取一棵子树:</p>
+<p>​    <img src="https://img-blog.csdnimg.cn/20181128171257679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>​    gc&amp;rt就是CART树,虽然将所有红蓝点都分类了,但是结果很锐利,容易过拟合.,gt代表随机森林中的一棵树,图片中的t=1代表这是第一号树.G代表所有树的结果整合(投票).gt和G中所有的小点点代表随机森林没有抽取到的样本,也就是子树gt在分类的时候不考虑实心的小点. 因为第一张图片只随机出一棵子树,所以看着G和gt是一样的,结果并不好.</p>
+<p>​     随机森林抽取100棵子树:</p>
+<p>​     <img src="https://img-blog.csdnimg.cn/20181128171801912.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>​    gt中t=100,代表这是第100棵子树,也就是众多子树中的一个,G代表合成的结果.可以看到结果好一些了.</p>
+<p>​    随机森林抽取1000棵子树:</p>
+<p>​    <img src="https://img-blog.csdnimg.cn/20181128171924416.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>​    可以看到当抽取数量增大到某个数值后,随机森林可以很好的完成分类而且分类结果教决策树要平滑很多.这也就是为什么现在的家长喜欢给学生报课外辅导的原因,老师多了,学到的就要比其他人好.这都是有科学依据的.令狐冲称霸武林采用的也是随机森林的理论.</p>
+<p>​    随机森林在复杂数据上的表现:</p>
+<p>​    <img src="https://img-blog.csdnimg.cn/20181128172703365.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>​     当大量的数据中出现垃圾数据(噪声)的时候,我们对比一下决策树和随机森林的表现:</p>
+<p>​     左侧是子决策树的表现,右图是随机森林只有一棵树的时候的合成结果.因为只有一棵树,所以基本就是一样的乱.</p>
+<p>​     <img src="https://img-blog.csdnimg.cn/20181128172809818.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>​     当随机森林子树达到21棵的时候,左图是其中一棵树的结果,右图是21棵树的合成结果:</p>
+<p>​     <img src="https://img-blog.csdnimg.cn/20181128173043976.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>​    可以看到,结果已经有了很大的改善,当子树的数目增加的时候,结果还会更好.所以,随机森林是有一定的降噪能力的.</p>
+<p><strong>6-随机森林的优缺点</strong></p>
+<p>   优点:</p>
+<p>​       a-表现良好</p>
+<p>​       b-可处理高纬度数据,因为进行了维度抽样</p>
+<p>​       c-辅助进行特征选择(其实决策树也可以)</p>
+<p>​       d-得益于bagging可以进行并行训练</p>
+<p>   缺点:</p>
+<p>​       对于噪声过大的数据,也容易造成过拟合.</p>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/zhifubao.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wechat.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" target="_blank" rel="noopener" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/23/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-Random-Forest/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/23/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-logistics-regression/" class="archive-article-date">
-  	<time datetime="2019-12-23T06:10:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-23</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/23/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-logistics-regression/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">逻辑回归(logistics regression)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/23/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-logistics-regression/">逻辑回归(logistics regression)</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/20/spark%20Vectors.dense()%E5%92%8CVectors.sparse()%20%E5%AF%86%E9%9B%86%E5%90%91%E9%87%8F%E5%92%8C%E7%A8%80%E7%96%8F%E5%90%91%E9%87%8F/" class="archive-article-date">
-  	<time datetime="2019-12-20T14:23:35.411Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/20/spark%20Vectors.dense()%E5%92%8CVectors.sparse()%20%E5%AF%86%E9%9B%86%E5%90%91%E9%87%8F%E5%92%8C%E7%A8%80%E7%96%8F%E5%90%91%E9%87%8F/">spark Vectors.dense()和Vectors.sparse() 密集向量和稀疏向量</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -287,8 +421,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

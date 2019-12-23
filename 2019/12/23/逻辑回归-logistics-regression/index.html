@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="coco的个人博客">
 <meta property="og:description" content="多元线性回归是用线性的关系来拟合一个事情的发生规律,找到这个规律的表达公式,将得到的数据带入公式以用来实现预测的目的,我们习惯将这类预测未来的问题称作回归问题.机器学习中按照目的不同可以分为两大类:回归和分类.今天我们一起讨论的逻辑回归就可以用来完成分类任务.  一.分类和回归任务的区别 ​    我们可以按照任务的种类,将任务分为回归任务和分类任务.那这两者的区别是什么呢?按照较官方些的说法,">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;.com&#x2F;&#x2F;D:%5Chexo%5Cblog%5Csource_posts%5C%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-logistics-regression%5Cefd87c9d69634603351242aceaeace1f_watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;.com&#x2F;&#x2F;a1.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;private.codecogs.com&#x2F;gif.latex?h_%7B%5CTheta%20%7D%28x%29">
 <meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20181110165551883.jpg?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https:&#x2F;&#x2F;private.codecogs.com&#x2F;gif.latex?w%5E%7BT%7Dx">
@@ -45,9 +45,9 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20181110223349772.jpg?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https:&#x2F;&#x2F;private.codecogs.com&#x2F;gif.latex?h_%7B%5CTheta%7D%28x%29%20%3D%20g%28z%29">
 <meta property="og:image" content="https:&#x2F;&#x2F;private.codecogs.com&#x2F;gif.latex?h_%7B%5CTheta%7D%20%3D%20W%5E%7BT%7DX">
-<meta property="og:updated_time" content="2019-12-23T06:12:29.452Z">
+<meta property="og:updated_time" content="2019-12-23T06:19:21.503Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;.com&#x2F;&#x2F;D:%5Chexo%5Cblog%5Csource_posts%5C%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-logistics-regression%5Cefd87c9d69634603351242aceaeace1f_watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70.jpg">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;.com&#x2F;&#x2F;a1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="coco的个人博客" type="application/atom+xml">
   
@@ -221,13 +221,15 @@
 <p>​    我们可以按照任务的种类,将任务分为回归任务和分类任务.那这两者的区别是什么呢?按照较官方些的说法,输入变量与输出变量均为连续变量的预测问题是回归问题,输出变量为有限个离散变量的预测问题成为分类问题.</p>
 <p>​    通俗一点讲,我们要预测的结果是一个数,比如要通过一个人的饮食预测一个人的体重,体重的值可以有无限多个,有的人50kg,有的人51kg,在50和51之间也有无限多个数.这种预测结果是某一个确定数,而具体是哪个数有无限多种可能的问题,我们会训练出一个模型,传入参数后得到这个确定的数,这类问题我们称为回归问题.预测的这个变量(体重)因为有无限多种可能,在数轴上是连续的,所以我们称这种变量为连续变量.</p>
 <p>​    我们要预测一个人身体健康或者不健康,预测会得癌症或者不会得癌症,预测他是水瓶座,天蝎座还是射手座,这种结果只有几个值或者多个值的问题,我们可以把每个值都当做一类,预测对象到底属于哪一类.这样的问题称为分类问题.如果一个分类问题的结果只有两个,比如”是”和”不是”两个结果,我们把结果为”是”的样例数据称为”正例”,讲结果为”不是”的样例数据称为”负例”,对应的,这种结果的变量称为离散型变量.</p>
+ <a id="more"></a>
+
 <p><strong>二.逻辑回归不是回归</strong></p>
 <p>​     从名字来理解逻辑回归.在逻辑回归中,逻辑一词是<strong>logistics</strong> [lə’dʒɪstɪks]的音译字,并不是因为这个算法是突出逻辑的特性.</p>
 <p>​     至于回归,我们前一段讲到回归任务是结果为连续型变量的任务,logistics regression是用来做分类任务的,为什么叫回归呢?那我们是不是可以假设,逻辑回归就是用回归的办法来做分类的呢.跟上思路.</p>
 <p><strong>三.如果是你,你要怎么做</strong></p>
 <p>​    假设刚刚的思路是正确的,逻辑回归就是在用回归的办法做分类任务,那有什么办法可以做到呢,此时我们就先考虑最简单的二分类,结果是正例或者负例的任务.</p>
 <p>​    按照多元线性回归的思路,我们可以先对这个任务进行线性回归,学习出这个事情结果的规律,比如根据人的饮食,作息,工作和生存环境等条件预测一个人”有”或者”没有”得恶性肿瘤,可以先通过回归任务来预测人体内肿瘤的大小,取一个平均值作为阈值,假如平均值为y,肿瘤大小超过y为恶心肿瘤,无肿瘤或大小小于y的,为非恶性.这样通过线性回归加设定阈值的办法,就可以完成一个简单的二分类任务.如下图:</p>
-<p><img src="/.com//D:%5Chexo%5Cblog%5Csource_posts%5C%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-logistics-regression%5Cefd87c9d69634603351242aceaeace1f_watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70.jpg" alt="efd87c9d69634603351242aceaeace1f_watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTQ0NTU1Ng==,size_16,color_FFFFFF,t_70"></p>
+<p><img src="/.com//a1.jpg" alt="a1"></p>
 <p>​    上图中,红色的x轴为肿瘤大小,粉色的线为回归出的函数<img src="https://private.codecogs.com/gif.latex?h_%7B%5CTheta%20%7D%28x%29" alt="h_{\Theta }(x)">的图像,绿色的线为阈值.</p>
 <p>​    预测肿瘤大小还是一个回归问题,得到的结果(肿瘤的大小)也是一个连续型变量.通过设定阈值,就成功将回归问题转化为了分类问题.但是,这样做还存在一个问题.</p>
 <p>​    我们上面的假设,依赖于所有的肿瘤大小都不会特别离谱,如果有一个超大的肿瘤在我们的例子中,阈值就很难设定.加入还是取平均大小为阈值,则会出现下图的情况:</p>
@@ -386,6 +388,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/12/23/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-Random-Forest/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          随机森林(Random Forest )
+        
+      </div>
+    </a>
   
   
     <a href="/2019/12/20/spark%20Vectors.dense()%E5%92%8CVectors.sparse()%20%E5%AF%86%E9%9B%86%E5%90%91%E9%87%8F%E5%92%8C%E7%A8%80%E7%96%8F%E5%90%91%E9%87%8F/" id="article-nav-older" class="article-nav-link-wrap">
