@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/11 | coco的个人博客</title>
+  <title>coco的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="记录自己">
 <meta name="keywords" content="JAVA,程序员">
 <meta property="og:type" content="website">
 <meta property="og:title" content="coco的个人博客">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2019&#x2F;11&#x2F;index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;page&#x2F;2&#x2F;index.html">
 <meta property="og:site_name" content="coco的个人博客">
 <meta property="og:description" content="记录自己">
 <meta property="og:locale" content="en">
@@ -167,74 +167,216 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-spark Vectors.dense()和Vectors.sparse() 密集向量和稀疏向量" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/20/spark%20Vectors.dense()%E5%92%8CVectors.sparse()%20%E5%AF%86%E9%9B%86%E5%90%91%E9%87%8F%E5%92%8C%E7%A8%80%E7%96%8F%E5%90%91%E9%87%8F/">spark Vectors.dense()和Vectors.sparse() 密集向量和稀疏向量</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/20/spark%20Vectors.dense()%E5%92%8CVectors.sparse()%20%E5%AF%86%E9%9B%86%E5%90%91%E9%87%8F%E5%92%8C%E7%A8%80%E7%96%8F%E5%90%91%E9%87%8F/" class="archive-article-date">
+  	<time datetime="2019-12-20T14:23:35.411Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-20</time>
+</a>
+        
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>MLlib的本地向量主要分为两种，DenseVector和SparseVector，顾名思义，前者是用来保存稠密向量，后者是用来保存稀疏向量.<br>稀疏向量和密集向量都是向量的表示方法</p>
+<ul>
+<li><p>密集向量和稀疏向量的区别<br>密集向量的值就是一个普通的Double数组 而稀疏向量由两个并列的 数组indices和values组成 例如：向量(1.0,0.0,1.0,3.0)用密集格式表示为[1.0,0.0,1.0,3.0]，用稀疏格式表示为(4,[0,2,3],[1.0,1.0,3.0]) 第一个4表示向量的长度(元素个数)，[0,2,3]就是indices数组，[1.0,1.0,3.0]是values数组 表示向量0的位置的值是1.0，2的位置的值是1.0,而3的位置的值是3.0,其他的位置都是0<br>稀疏向量 [1] 通常用两部分表示：一部分是顺序向量，另一部分是值向量。例如稀疏向量(4，0，28，53，0，0，4，8)可用值向量(4，28，53，4，8)和顺序向量(1，0，1，1，0，0，1，1)表示。</p>
+<p>eg</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">data = [(0, Vectors.sparse(6, [0, 1, 2], [1.0, 1.0, 1.0]),),</span><br><span class="line">     (1, Vectors.sparse(6, [2, 3, 4], [1.0, 1.0, 1.0]),),</span><br><span class="line">     (2, Vectors.sparse(6, [0, 2, 4], [1.0, 1.0, 1.0]),)]</span><br><span class="line">df = spark.createDataFrame(data, [&quot;id&quot;, &quot;features&quot;])</span><br><span class="line">data = [(0, Vectors.dense([-1.0, -1.0 ]),),</span><br><span class="line">     (1, Vectors.dense([-1.0, 1.0 ]),),</span><br><span class="line">    (2, Vectors.dense([1.0, -1.0 ]),),</span><br><span class="line">     (3, Vectors.dense([1.0, 1.0]),)]</span><br><span class="line">df = spark.createDataFrame(data, [&quot;id&quot;, &quot;features&quot;])</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/20/spark%20Vectors.dense()%E5%92%8CVectors.sparse()%20%E5%AF%86%E9%9B%86%E5%90%91%E9%87%8F%E5%92%8C%E7%A8%80%E7%96%8F%E5%90%91%E9%87%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-记录一下Hutool里自己以后可能常用的" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8BHutool%E9%87%8C%E8%87%AA%E5%B7%B1%E4%BB%A5%E5%90%8E%E5%8F%AF%E8%83%BD%E5%B8%B8%E7%94%A8%E7%9A%84/" class="archive-article-date">
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8BHutool%E9%87%8C%E8%87%AA%E5%B7%B1%E4%BB%A5%E5%90%8E%E5%8F%AF%E8%83%BD%E5%B8%B8%E7%94%A8%E7%9A%84/">记录一下Hutool里自己以后可能常用的</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8BHutool%E9%87%8C%E8%87%AA%E5%B7%B1%E4%BB%A5%E5%90%8E%E5%8F%AF%E8%83%BD%E5%B8%B8%E7%94%A8%E7%9A%84/" class="archive-article-date">
   	<time datetime="2019-11-08T00:24:45.171Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-08</time>
 </a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><h4 id="日期与时间工具"><a href="#日期与时间工具" class="headerlink" title="日期与时间工具"></a>日期与时间工具</h4><p>字符串转日期</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String d= &quot;2018-11-11 00:00:01&quot;;</span><br><span class="line">Date date = DateUtil.parse(d);</span><br></pre></td></tr></table></figure>
+
+<p>在操作数据库的日期类型时会经常用的！比以前方便好多！</p>
+<p>在操作数据库的日期类型时会经常用的！比以前方便好多！</p>
+<p>日期转字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  Date d = new Date();</span><br><span class="line">//1.结果 2017/03/01</span><br><span class="line">  String format = DateUtil.format(d, &quot;yyyy/MM/dd&quot;);</span><br><span class="line">//2.常用格式的格式化，结果：2017-03-01</span><br><span class="line">  String formatDate = DateUtil.formatDate(d);</span><br><span class="line">//3.结果：2017-03-01 00:00:00</span><br><span class="line">  String formatDateTime = DateUtil.formatDateTime(d);</span><br><span class="line">//4.结果：00:00:00</span><br><span class="line">  String formatTime = DateUtil.formatTime(d);</span><br></pre></td></tr></table></figure>
+
+<p>常用第二和第三种吧  </p></li></ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8BHutool%E9%87%8C%E8%87%AA%E5%B7%B1%E4%BB%A5%E5%90%8E%E5%8F%AF%E8%83%BD%E5%B8%B8%E7%94%A8%E7%9A%84/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-IDEA上传项目到Github时出现Push rejected Push master to originmaster was rejected by remote解决方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8BHutool%E9%87%8C%E8%87%AA%E5%B7%B1%E4%BB%A5%E5%90%8E%E5%8F%AF%E8%83%BD%E5%B8%B8%E7%94%A8%E7%9A%84/">记录一下Hutool里自己以后可能常用的</a>
+      <a class="article-title" href="/2019/11/05/IDEA%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE%E5%88%B0Github%E6%97%B6%E5%87%BA%E7%8E%B0Push%20rejected%20Push%20master%20to%20originmaster%20was%20rejected%20by%20remote%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">IDEA上传项目到Github时出现Push rejected Push master to originmaster was rejected by remote解决方案</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/05/IDEA%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE%E5%88%B0Github%E6%97%B6%E5%87%BA%E7%8E%B0Push%20rejected%20Push%20master%20to%20originmaster%20was%20rejected%20by%20remote%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="archive-article-date">
+        
+        <a href="/2019/11/05/IDEA%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE%E5%88%B0Github%E6%97%B6%E5%87%BA%E7%8E%B0Push%20rejected%20Push%20master%20to%20originmaster%20was%20rejected%20by%20remote%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="archive-article-date">
   	<time datetime="2019-11-05T07:01:25.354Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-05</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/05/IDEA%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE%E5%88%B0Github%E6%97%B6%E5%87%BA%E7%8E%B0Push%20rejected%20Push%20master%20to%20originmaster%20was%20rejected%20by%20remote%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">IDEA上传项目到Github时出现Push rejected Push master to originmaster was rejected by remote解决方案</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今日上传新项目到github时出现了这个问题，在网上寻找了许多答案都没有解决。<br>最后是发现项目有个文件是超过了100M，由于github的上传大小限制才导致的失败。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">解决方案1：windows下在项目文件夹下，右上角搜索里输入：“大小：&gt;100M”</span><br><span class="line">找到超过了100M的文件，进行内容删减</span><br><span class="line">解决方案2：突破github限制，支持单个文件超出100M (使用 Git LFS)</span><br><span class="line"></span><br><span class="line">Git LFS的官方网址在这里： https://git-lfs.github.com/，官网上有很详细的说明。</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/05/IDEA%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE%E5%88%B0Github%E6%97%B6%E5%87%BA%E7%8E%B0Push%20rejected%20Push%20master%20to%20originmaster%20was%20rejected%20by%20remote%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 
 
           </div>
@@ -259,9 +401,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
+		isHome: true,
 		isPost: false,
-		isArchive: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

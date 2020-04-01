@@ -6,17 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/11 | coco的个人博客</title>
+  <title>（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别 | coco的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录自己">
+  <meta name="description" content="（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别\1．** \HashMap概述** Java中的数据存储方式有两种结构，一种是数组，另一种就是链表，前者的特点是连续空间，寻址迅速，但是在增删元素的时候会有较大幅度的移动，所以数组的特点是查询速度快，增删较慢。 而链表由于空间不连续，寻址困难，增删元素只需修改指针，所以链表的特点是查询速度慢、增删快。 那么">
 <meta name="keywords" content="JAVA,程序员">
-<meta property="og:type" content="website">
-<meta property="og:title" content="coco的个人博客">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2019&#x2F;11&#x2F;index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;01&#x2F;%EF%BC%88%E4%BB%A3%E7%A0%81%EF%BC%89HashMap%E3%80%81Hashtable%E3%80%81ConcurrentHashMap%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8C%BA%E5%88%AB&#x2F;index.html">
 <meta property="og:site_name" content="coco的个人博客">
-<meta property="og:description" content="记录自己">
+<meta property="og:description" content="（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别\1．** \HashMap概述** Java中的数据存储方式有两种结构，一种是数组，另一种就是链表，前者的特点是连续空间，寻址迅速，但是在增删元素的时候会有较大幅度的移动，所以数组的特点是查询速度快，增删较慢。 而链表由于空间不连续，寻址困难，增删元素只需修改指针，所以链表的特点是查询速度慢、增删快。 那么">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;.com&#x2F;&#x2F;C:%5CUsers%5C71976%5CDesktop%5C%E7%AC%94%E8%AE%B0%5Cimg%5CCenter">
+<meta property="og:updated_time" content="2020-03-03T10:38:14.151Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;.com&#x2F;&#x2F;C:%5CUsers%5C71976%5CDesktop%5C%E7%AC%94%E8%AE%B0%5Cimg%5CCenter">
   
     <link rel="alternative" href="/atom.xml" title="coco的个人博客" type="application/atom+xml">
   
@@ -165,76 +168,407 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8BHutool%E9%87%8C%E8%87%AA%E5%B7%B1%E4%BB%A5%E5%90%8E%E5%8F%AF%E8%83%BD%E5%B8%B8%E7%94%A8%E7%9A%84/" class="archive-article-date">
-  	<time datetime="2019-11-08T00:24:45.171Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8BHutool%E9%87%8C%E8%87%AA%E5%B7%B1%E4%BB%A5%E5%90%8E%E5%8F%AF%E8%83%BD%E5%B8%B8%E7%94%A8%E7%9A%84/">记录一下Hutool里自己以后可能常用的</a>
+    <h1 class="article-title" itemprop="name">
+      （代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/05/IDEA%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE%E5%88%B0Github%E6%97%B6%E5%87%BA%E7%8E%B0Push%20rejected%20Push%20master%20to%20originmaster%20was%20rejected%20by%20remote%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="archive-article-date">
-  	<time datetime="2019-11-05T07:01:25.354Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-05</time>
+        
+        <a href="/2020/04/01/%EF%BC%88%E4%BB%A3%E7%A0%81%EF%BC%89HashMap%E3%80%81Hashtable%E3%80%81ConcurrentHashMap%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2020-04-01T14:54:04.302Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-01</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/05/IDEA%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE%E5%88%B0Github%E6%97%B6%E5%87%BA%E7%8E%B0Push%20rejected%20Push%20master%20to%20originmaster%20was%20rejected%20by%20remote%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">IDEA上传项目到Github时出现Push rejected Push master to originmaster was rejected by remote解决方案</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别"><a href="#（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别" class="headerlink" title="（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别"></a>（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别</h3><p><strong><em>\</em>1．**</strong> <strong><em>\</em>HashMap概述**</strong></p>
+<p>Java中的数据存储方式有两种结构，一种是数组，另一种就是链表，前者的特点是连续空间，寻址迅速，但是在增删元素的时候会有较大幅度的移动，所以数组的特点是查询速度快，增删较慢。</p>
+<p>而链表由于空间不连续，寻址困难，增删元素只需修改指针，所以链表的特点是查询速度慢、增删快。</p>
+<p>那么有没有一种数据结构来综合一下数组和链表以便发挥他们各自的优势？答案就是哈希表。哈希表的存储结构如下图所示：</p>
+<p> <img src="/.com//C:%5CUsers%5C71976%5CDesktop%5C%E7%AC%94%E8%AE%B0%5Cimg%5CCenter" alt="img"></p>
+<p>从上图中，我们可以发现哈希表是由数组+链表组成的，一个长度为16的数组中，每个元素存储的是一个链表的头结点，通过功能类似于hash(key.hashCode())%len的操作，获得要添加的元素所要存放的的数组位置。</p>
+<p>HashMap的哈希算法实际操作是通过位运算，比取模运算效率更高，同样能达到使其分布均匀的目的，后面会介绍。</p>
+<p>键值对所存放的数据结构其实是HashMap中定义的一个Entity内部类，数组来实现的，属性有key、value和指向下一个Entity的next。</p>
+<p><strong><em>\</em>2．\</strong> *<em>HashMap*</em>*<em>初始化***</em></p>
+<p>HashMap有两种常用的构造方法：</p>
+<p>第一种是不需要参数的构造方法：</p>
+<ol>
+<li><strong>static</strong> <strong>final</strong> <strong>int</strong> DEFAULT_INITIAL_CAPACITY = 16; //初始数组长度为16 </li>
+<li><strong>static</strong> <strong>final</strong> <strong>int</strong> MAXIMUM_CAPACITY = 1 &lt;&lt; 30; //最大容量为2的30次方 </li>
+<li>//装载因子用来衡量HashMap满的程度 </li>
+<li>//计算HashMap的实时装载因子的方法为：size/capacity </li>
+<li><strong>static</strong> <strong>final</strong> <strong>float</strong> DEFAULT_LOAD_FACTOR = 0.75f; //装载因子 </li>
+<li></li>
+<li><strong>public</strong> HashMap() {  </li>
+<li><strong>this</strong>.loadFactor = DEFAULT_LOAD_FACTOR;  </li>
+<li>threshold = (<strong>int</strong>)(DEFAULT_INITIAL_CAPACITY * DEFAULT_LOAD_FACTOR); </li>
+<li>//默认数组长度为16  </li>
+<li>table = <strong>new</strong> Entry[DEFAULT_INITIAL_CAPACITY]; </li>
+<li>init();  </li>
+<li>}  </li>
+</ol>
+<p>第二种是需要参数的构造方法：</p>
+<ol>
+<li><strong>public</strong> HashMap(<strong>int</strong> initialCapacity, <strong>float</strong> loadFactor) {  </li>
+<li>​    <strong>if</strong> (initialCapacity &lt; 0)  </li>
+<li>​      <strong>throw</strong> <strong>new</strong> IllegalArgumentException(“Illegal initial capacity: “ + initialCapacity);  </li>
+<li>​    <strong>if</strong> (initialCapacity &gt; MAXIMUM_CAPACITY)  </li>
+<li>​      initialCapacity = MAXIMUM_CAPACITY;  </li>
+<li>​    <strong>if</strong> (loadFactor &lt;= 0 || Float.isNaN(loadFactor))  </li>
+<li>​      <strong>throw</strong> <strong>new</strong> IllegalArgumentException(“Illegal load factor: “ + loadFactor);  </li>
+<li></li>
+<li>​    // Find a power of 2 &gt;= initialCapacity  </li>
+<li>​    <strong>int</strong> capacity = 1;  </li>
+<li>​    <strong>while</strong> (capacity &lt; initialCapacity)  </li>
+<li>​      capacity &lt;&lt;= 1;  </li>
+<li></li>
+<li>​    <strong>this</strong>.loadFactor = loadFactor;  </li>
+<li>​    threshold = (<strong>int</strong>)(capacity * loadFactor);  </li>
+<li>​    table = <strong>new</strong> Entry[capacity];  </li>
+<li>​    init();  </li>
+<li>}  </li>
+</ol>
+<p>从源码可以看出，初始化的数组长度为capacity，capacity的值总是2的N次方，大小比第一个参数稍大或相等。</p>
+<p><strong>3.</strong>  <strong>HashMap的put操作</strong></p>
+<ol>
+<li><strong>public</strong> V put(K key, V value) {  </li>
+<li>​    <strong>if</strong> (key == <strong>null</strong>)  </li>
+<li>​     <strong>return</strong> putForNullKey(value);  </li>
+<li>​    <strong>int</strong> hash = hash(key.hashCode());  </li>
+<li>​    <strong>int</strong> i = indexFor(hash, table.length);  </li>
+<li>​    <strong>for</strong> (Entry&lt;K,V&gt; e = table[i]; e != <strong>null</strong>; e = e.next) {  </li>
+<li>​      Object k;  </li>
+<li>​      <strong>if</strong> (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k))) {  </li>
+<li>​        V oldValue = e.value;  </li>
+<li>​        e.value = value;  </li>
+<li>​        e.recordAccess(<strong>this</strong>);  </li>
+<li>​        <strong>return</strong> oldValue;  </li>
+<li>​      }  </li>
+<li>​    }     </li>
+<li>modCount++;  </li>
+<li>​    addEntry(hash, key, value, i);  </li>
+<li>​    <strong>return</strong> <strong>null</strong>;  </li>
+<li>}  </li>
+</ol>
+<p><strong>3.1</strong>  <strong>put进的key为null</strong></p>
+<p>从源码中可以看出，HashMap是允许key为null的，会调用putForNullKey()方法：</p>
+<p>[java] <a href="https://blog.csdn.net/seu_calvin/article/details/52653711#" target="_blank" rel="noopener">view plain</a> <a href="https://blog.csdn.net/seu_calvin/article/details/52653711#" target="_blank" rel="noopener">copy</a></p>
+<ol>
+<li><strong>private</strong> V putForNullKey(V value) {  </li>
+<li>​    <strong>for</strong> (Entry&lt;K,V&gt; e = table[0]; e != <strong>null</strong>; e = e.next) {  </li>
+<li>​      <strong>if</strong> (e.key == <strong>null</strong>) {  </li>
+<li>​        V oldValue = e.value;  </li>
+<li>​        e.value = value;  </li>
+<li>​        e.recordAccess(<strong>this</strong>);  </li>
+<li>​        <strong>return</strong> oldValue;  </li>
+<li>​      }  </li>
+<li>​    }  </li>
+<li>​    modCount++;  </li>
+<li>​    addEntry(0, <strong>null</strong>, value, 0);  </li>
+<li>​    <strong>return</strong> <strong>null</strong>;  </li>
+<li>}  </li>
+<li></li>
+<li><strong>void</strong> addEntry(<strong>int</strong> hash, K key, V value, <strong>int</strong> bucketIndex) {  </li>
+<li>Entry&lt;K,V&gt; e = table[bucketIndex];  </li>
+<li>​    table[bucketIndex] = <strong>new</strong> Entry&lt;K,V&gt;(hash, key, value, e);  </li>
+<li>​    <strong>if</strong> (size++ &gt;= threshold)  </li>
+<li>​      resize(2 * table.length);  </li>
+<li>}  </li>
+</ol>
+<p>putForNullKey方法会遍历以table[0]为链表头的链表，如果存在key为null的KV，那么替换其value值并返回旧值。否则调用addEntry方法，这个方法也很简单，将[null,value]放在table[0]的位置，并将新加入的键值对封装成一个Entity对象，将其next指向原table[0]处的Entity实例。</p>
+<p>size表示HashMap中存放的所有键值对的数量。</p>
+<p>threshold = capacity*loadFactor，最后几行代码表示当HashMap的size大于threshold时会执行resize操作，将HashMap扩容为原来的2倍。扩容需要重新计算每个元素在数组中的位置，indexFor()方法中的table.length参数也证明了这一点。</p>
+<p>但是扩容是一个非常消耗性能的操作，所以如果我们已经预知HashMap中元素的个数，那么预设元素的个数能够有效的提高HashMap的性能。比如说我们有1000个元素，那么我们就该声明new HashMap(2048)，因为需要考虑默认的0.75的扩容因子和数组数必须是2的N次方。若使用声明new HashMap(1024)那么put过程中会进行扩容。</p>
+<p><strong>3.2</strong>  <strong>put进的key不为null</strong></p>
+<p>将上述put方法中的相关代码复制一下方便查看：</p>
+<ol>
+<li><strong>int</strong> hash = hash(key.hashCode());  </li>
+<li><strong>int</strong> i = indexFor(hash, table.length);  </li>
+<li><strong>for</strong> (Entry&lt;K,V&gt; e = table[i]; e != <strong>null</strong>; e = e.next) {  </li>
+<li>Object k;  </li>
+<li><strong>if</strong> (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k))) {  </li>
+<li>​    V oldValue = e.value;  </li>
+<li>​    e.value = value;  </li>
+<li>​    e.recordAccess(<strong>this</strong>);  </li>
+<li>​    <strong>return</strong> oldValue;  </li>
+<li>​    }  </li>
+<li>}     </li>
+<li>modCount++;  </li>
+<li>addEntry(hash, key, value, i);  </li>
+<li><strong>return</strong> <strong>null</strong>;  </li>
+<li>} </li>
+</ol>
+<p>从源码可以看出，第1、2行计算将要put进的键值对的数组的位置i。第4行判断加入的key是否和以table[i]为链表头的链表中所有的键值对有重复，若重复则替换value并返回旧值，若没有重复则调用addEntry方法，上面对这个方法的逻辑已经介绍过了。</p>
+<p>至此HashMap的put操作已经介绍完毕了。</p>
+<p><strong>4.</strong>  <strong>HashMap的get操作</strong></p>
+<ol>
+<li><strong>public</strong> V get(Object key) {  </li>
+<li><strong>if</strong> (key == <strong>null</strong>)  </li>
+<li>​    <strong>return</strong> getForNullKey();  </li>
+<li><strong>int</strong> hash = hash(key.hashCode());  </li>
+<li><strong>for</strong> (Entry&lt;K,V&gt; e = table[indexFor(hash, table.length)]; e != <strong>null</strong>; e = e.next) {  </li>
+<li>​      Object k;  </li>
+<li>​      <strong>if</strong> (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k))) </li>
+<li>​        <strong>return</strong> e.value;  </li>
+<li>​    }  </li>
+<li><strong>return</strong> <strong>null</strong>;  </li>
+<li>}  </li>
+<li></li>
+<li><strong>private</strong> V getForNullKey() {  </li>
+<li><strong>for</strong> (Entry&lt;K,V&gt; e = table[0]; e != <strong>null</strong>; e = e.next) {  </li>
+<li><strong>if</strong> (e.key == <strong>null</strong>)  </li>
+<li><strong>return</strong> e.value;  </li>
+<li>}  </li>
+<li><strong>return</strong> <strong>null</strong>;  </li>
+<li>}  </li>
+</ol>
+<p>如果了解了前面的put操作，那么这里的get操作逻辑就很容易理解了，源码中的逻辑已经非常非常清晰了。</p>
+<p>需要注意的只有当找不到对应value时，返回的是null。或者value本身就是null。这是可以通过containsKey()来具体判断。</p>
+<p>了解了上面HashMap的put和get操作原理，可以通过下面这个小例题进行知识巩固，题目是打印在数组中出现n/2以上的元素，我们便可以使用HashMap的特性来解决。</p>
+<ol>
+<li><strong>public</strong> <strong>class</strong> HashMapTest {  </li>
+<li><strong>public</strong> <strong>static</strong> <strong>void</strong> main(String[] args) {  </li>
+<li>​    <strong>int</strong> [] a = {2,1,3,2,0,4,2,1,2,3,1,5,6,2,2,3};  </li>
+<li>​    Map&lt;Integer, Integer&gt; map = <strong>new</strong> HashMap&lt;Integer,Integer&gt;();  </li>
+<li>​    <strong>for</strong>(<strong>int</strong> i=0; i&lt;a.length; i++){  </li>
+<li>​      <strong>if</strong>(map.containsKey(a[i])){  </li>
+<li>​        <strong>int</strong> tmp = map.get(a[i]);  </li>
+<li>​        tmp+=1;  </li>
+<li>​        map.put(a[i], tmp);  </li>
+<li>​      }<strong>else</strong>{  </li>
+<li>​        map.put(a[i], 1);  </li>
+<li>​      }  </li>
+<li>​    }  </li>
+<li>​    Set<Integer> set = map.keySet();     </Integer></li>
+<li><strong>for</strong> (Integer s : set) {  </li>
+<li>​      <strong>if</strong>(map.get(s)&gt;=a.length/2){  </li>
+<li>​        System.out.println(s);  </li>
+<li>​      }  </li>
+<li>​    } </li>
+<li>}  </li>
+<li>}  </li>
+</ol>
+<p><strong>5.</strong>  <strong>HashMap和HashTable的对比</strong></p>
+<p>HashTable和HashMap采用相同的存储机制，二者的实现基本一致，不同的是：</p>
+<p>（1）HashMap是非线程安全的，HashTable是线程安全的，内部的方法基本都经过synchronized修饰。</p>
+<p>（2）因为同步、哈希性能等原因，性能肯定是HashMap更佳，因此HashTable已被淘汰。</p>
+<p>（3） HashMap允许有null值的存在，而在HashTable中put进的键值只要有一个null，直接抛出NullPointerException。</p>
+<p>（4）HashMap默认初始化数组的大小为16，HashTable为11。前者扩容时乘2，使用位运算取得哈希，效率高于取模。而后者为乘2加1，都是素数和奇数，这样取模哈希结果更均匀。</p>
+<p>这里本来我没有仔细看两者的具体哈希算法过程，打算粗略比较一下区别就过的，但是最近师姐面试美团移动开发时被问到了稍微具体一些的算法过程，我也是醉了…不过还是恭喜师姐面试成功，起薪20W，真是羡慕，希望自己一年后找工作也能顺顺利利的。</p>
+<p>言归正传，看下两种集合的hash算法。看源码也不难理解。</p>
+<ol>
+<li><pre><code>1. `//HashMap的散列函数，这里传入参数为键值对的key` 
+2. `**static** **final** **int** hash(Object key) {` 
+3.   `**int** h;` 
+4.   `**return** (key == **null**) ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt; 16);` 
+5. `}`  
+6. `//返回hash值的索引，h &amp; (length-1)操作等价于 hash % length操作， 但&amp;操作性能更优` 
+7. `**static** **int** indexFor(**int** h, **int** length) {` 
+8.   `// length must be a non-zero power of 2` 
+9.   `**return** h &amp; (length-1);` 
+10. `}` 
+11. `````` 
+12. `//HashTable的散列函数直接在put方法里实现了` 
+13. `**int** hash = key.hashCode();` 
+14. `**int** index = (hash &amp; 0x7FFFFFFF) % tab.length;` </code></pre></li>
+</ol>
+<p><strong>6.</strong>  <strong>HashTable和ConCurrentHashMap的对比</strong></p>
+<p>先对ConcurrentHashMap进行一些介绍吧，它是线程安全的HashMap的实现。</p>
+<p>HashTable里使用的是synchronized关键字，这其实是对对象加锁，锁住的都是对象整体，当Hashtable的大小增加到一定的时候，性能会急剧下降，因为迭代时需要被锁定很长的时间。</p>
+<p>ConcurrentHashMap算是对上述问题的优化，其构造函数如下，默认传入的是16，0.75，16。</p>
+<p>[java] <a href="https://blog.csdn.net/seu_calvin/article/details/52653711#" target="_blank" rel="noopener">view plain</a> <a href="https://blog.csdn.net/seu_calvin/article/details/52653711#" target="_blank" rel="noopener">copy</a></p>
+<ol>
+<li><strong>public</strong> ConcurrentHashMap(<strong>int</strong> paramInt1, <strong>float</strong> paramFloat, <strong>int</strong> paramInt2) {  </li>
+<li>//… </li>
+<li><strong>int</strong> i = 0;  </li>
+<li><strong>int</strong> j = 1;  </li>
+<li><strong>while</strong> (j &lt; paramInt2) {  </li>
+<li>++i;  </li>
+<li>j &lt;&lt;= 1;  </li>
+<li>}  </li>
+<li><strong>this</strong>.segmentShift = (32 - i);  </li>
+<li><strong>this</strong>.segmentMask = (j - 1);  </li>
+<li><strong>this</strong>.segments = Segment.newArray(j);  </li>
+<li>//… </li>
+<li><strong>int</strong> k = paramInt1 / j;  </li>
+<li><strong>if</strong> (k * j &lt; paramInt1)  </li>
+<li>++k;  </li>
+<li><strong>int</strong> l = 1;  </li>
+<li><strong>while</strong> (l &lt; k)  </li>
+<li>l &lt;&lt;= 1;  </li>
+<li></li>
+<li><strong>for</strong> (<strong>int</strong> i1 = 0; i1 &lt; <strong>this</strong>.segments.length; ++i1)  </li>
+<li><strong>this</strong>.segments[i1] = <strong>new</strong> Segment(l, paramFloat);  </li>
+<li>}  </li>
+<li></li>
+<li><strong>public</strong> V put(K paramK, V paramV) {  </li>
+<li><strong>if</strong> (paramV == <strong>null</strong>)  </li>
+<li><strong>throw</strong> <strong>new</strong> NullPointerException();  </li>
+<li><strong>int</strong> i = hash(paramK.hashCode()); //这里的hash函数和HashMap中的不一样 </li>
+<li><strong>return</strong> <strong>this</strong>.segments[(i &gt;&gt;&gt; <strong>this</strong>.segmentShift &amp; <strong>this</strong>.segmentMask)].put(paramK, i, paramV, <strong>false</strong>);  </li>
+<li>}  </li>
+</ol>
+<p>ConcurrentHashMap引入了分割(Segment)，上面代码中的最后一行其实就可以理解为把一个大的Map拆分成N个小的HashTable，在put方法中，会根据hash(paramK.hashCode())来决定具体存放进哪个Segment，如果查看Segment的put操作，我们会发现内部使用的同步机制是基于lock操作的，这样就可以对Map的一部分（Segment）进行上锁，这样影响的只是将要放入同一个Segment的元素的put操作，保证同步的时候，锁住的不是整个Map（HashTable就是这么做的），相对于HashTable提高了多线程环境下的性能，因此HashTable已经被淘汰了。</p>
+<p><strong>7.</strong>  <strong>HashMap和ConCurrentHashMap的对比</strong></p>
+<p>最后对这俩兄弟做个区别总结吧：</p>
+<p>（1）经过4.2的分析，我们知道ConcurrentHashMap对整个桶数组进行了分割分段(Segment)，然后在每一个分段上都用lock锁进行保护，相对于HashTable的syn关键字锁的粒度更精细了一些，并发性能更好，而HashMap没有锁机制，不是线程安全的。</p>
+<p>（2）HashMap的键值对允许有null，但是ConCurrentHashMap都不允许。</p>
+<p>至此对HashMap、HashTable以及ConCurrentHashMap异同比较总结完毕。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/zhifubao.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wechat.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" target="_blank" rel="noopener" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/01/%EF%BC%88%E4%BB%A3%E7%A0%81%EF%BC%89HashMap%E3%80%81Hashtable%E3%80%81ConcurrentHashMap%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8C%BA%E5%88%AB/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/04/01/%EF%BC%88%E7%90%86%E8%AE%BA%EF%BC%89HashMap%E3%80%81Hashtable%E3%80%81ConcurrentHashMap%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8C%BA%E5%88%AB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          （理论）HashMap、Hashtable、ConcurrentHashMap的原理与区别
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2019/12/23/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-Random-Forest/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">随机森林(Random Forest )</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -260,8 +594,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
