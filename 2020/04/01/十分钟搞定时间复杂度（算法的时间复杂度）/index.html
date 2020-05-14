@@ -17,7 +17,7 @@
 <meta property="og:description" content="十分钟搞定时间复杂度（算法的时间复杂度）我们假设计算机运行一行基础代码需要执行一次运算。 1234int aFunc(void) &amp;#123;    printf(&quot;Hello, World!\n&quot;);      &#x2F;&#x2F;  需要执行 1 次    return 0;       &#x2F;&#x2F; 需要执行 1 次&amp;#125;  那么上面这个方法需要执行 2 次运算 123456int aFunc(int n)">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;2868692-072500c32dbce83f.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;650&#x2F;format&#x2F;webp">
-<meta property="og:updated_time" content="2020-03-04T16:20:10.196Z">
+<meta property="og:updated_time" content="2020-05-14T02:28:58.206Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;2868692-072500c32dbce83f.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;650&#x2F;format&#x2F;webp">
   
@@ -196,6 +196,8 @@
 
 <p>这个方法需要 (n + 1 + n  + 1) = 2n + 2 次运算。</p>
 <p>我们把 算法需要执行的运算次数 用 输入大小n 的函数 表示，即 T(n) 。<br> 此时为了 估算算法需要的运行时间 和 简化算法分析，我们引入时间复杂度的概念。</p>
+ <a id="more"></a>
+
 <p>定义：存在常数 c 和函数 f(N)，使得当 N &gt;= c 时 T(N) &lt;= f(N)，表示为 T(n) = O(f(n)) 。<br> 如图：</p>
 <p><img src="https:////upload-images.jianshu.io/upload_images/2868692-072500c32dbce83f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/650/format/webp" alt="img"></p>
 <p>当 N &gt;= 2 的时候，f(n) = n^2 总是大于 T(n) = n + 2 的，于是我们说 f(n) 的增长速度是大于或者等于 T(n) 的，也说 f(n) 是 T(n) 的上界，可以表示为 T(n) = O(f(n))。</p>
@@ -361,9 +363,18 @@
   
 <nav id="article-nav">
   
+    <a href="/2020/05/14/cookie%E5%92%8Csession%E7%9A%84%E5%85%B3%E7%B3%BB%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0session%E4%B8%80%E8%87%B4%E3%80%81%E4%BC%9A%E8%AF%9D%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          cookie和session的关系、负载均衡如何实现session一致、会话如何建立
+        
+      </div>
+    </a>
   
-    <a href="/2020/04/01/%E5%B8%B8%E7%94%A8%E7%9A%84GoogleHacking%E8%AF%AD%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">常用的GoogleHacking语法</div>
+  
+    <a href="/2020/04/01/springboot%E9%9B%86%E6%88%90redis%E7%BC%93%E5%AD%98%EF%BC%8C%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">springboot集成redis缓存，使用注解</div>
       <i class="icon-circle-right"></i>
     </a>
   

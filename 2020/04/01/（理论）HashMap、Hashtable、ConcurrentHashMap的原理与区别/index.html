@@ -17,7 +17,7 @@
 <meta property="og:description" content="（理论）HashMap、Hashtable、ConcurrentHashMap的原理与区别HashTable 底层数组+链表实现，无论key还是value都不能为null，线程安全，实现线程安全的方式是在修改数据时锁住整个HashTable，效率低，ConcurrentHashMap做了相关优化 初始size为11，扩容：newsize = olesize*2+1 计算index的方法：index">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;.com&#x2F;&#x2F;C:%5CUsers%5C71976%5CDesktop%5C%E7%AC%94%E8%AE%B0%5Cimg%5C1a20c1a7-c422-374b-9acf-8c33479586cb.jpg">
-<meta property="og:updated_time" content="2020-03-03T10:34:17.253Z">
+<meta property="og:updated_time" content="2020-05-14T02:26:36.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;.com&#x2F;&#x2F;C:%5CUsers%5C71976%5CDesktop%5C%E7%AC%94%E8%AE%B0%5Cimg%5C1a20c1a7-c422-374b-9acf-8c33479586cb.jpg">
   
@@ -194,12 +194,20 @@
 <li>计算index的方法：index = (hash &amp; 0x7FFFFFFF) % tab.length</li>
 </ul>
 <h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a><strong>HashMap</strong></h3><ul>
-<li>底层数组+链表实现，可<strong>以存储null键和null值</strong>，线程<strong>不安全</strong></li>
-<li>初始size为<strong>16</strong>，扩容：newsize = oldsize*2，size一定为2的n次幂</li>
-<li>扩容针对整个Map，每次扩容时，原来数组中的元素依次重新计算存放位置，并重新插入</li>
-<li>插入元素后才判断该不该扩容，有可能无效扩容（插入后如果扩容，如果没有再次插入，就会产生无效扩容）</li>
-<li>当Map中元素总数超过Entry数组的75%，触发扩容操作，为了减少链表长度，元素分配更均匀</li>
-<li>计算index方法：index = hash &amp; (tab.length – 1)</li>
+<li><p>底层数组+链表实现，可<strong>以存储null键和null值</strong>，线程<strong>不安全</strong></p>
+</li>
+<li><p>初始size为<strong>16</strong>，扩容：newsize = oldsize*2，size一定为2的n次幂</p>
+</li>
+<li><p>扩容针对整个Map，每次扩容时，原来数组中的元素依次重新计算存放位置，并重新插入</p>
+</li>
+<li><p>插入元素后才判断该不该扩容，有可能无效扩容（插入后如果扩容，如果没有再次插入，就会产生无效扩容）</p>
+</li>
+<li><p>当Map中元素总数超过Entry数组的75%，触发扩容操作，为了减少链表长度，元素分配更均匀</p>
+</li>
+<li><p>计算index方法：index = hash &amp; (tab.length – 1)</p>
+<a id="more"></a>
+
+</li>
 </ul>
 <p>HashMap的初始值还要考虑加载因子:</p>
 <ul>

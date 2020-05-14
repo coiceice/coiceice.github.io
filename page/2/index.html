@@ -167,6 +167,352 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ArrayList" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/01/ArrayList/">ArrayList</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/01/ArrayList/" class="archive-article-date">
+  	<time datetime="2020-04-01T14:54:04.309Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p>ArrayList 可能是很多人使用得最为频繁的容器类了，ArrayList 实现了 List 接口，是一个有序容器，即存放元素的顺序与添加顺序相同，允许添加相同元素，包括 null ，底层通过数组来实现数据存储，容器内存储的元素个数不能超出数组空间。所以向容器中添加元素时如果发现数组空间不足，容器会自动对底层数组进行扩容操作</p>
+<h4 id="一、ArrayList-的类声明"><a href="#一、ArrayList-的类声明" class="headerlink" title="一、ArrayList 的类声明"></a>一、ArrayList 的类声明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class ArrayList&lt;E&gt; extends AbstractList&lt;E&gt;</span><br><span class="line">        implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable</span><br></pre></td></tr></table></figure>
+
+<p>从其实现的几个接口可以看出来，ArrayList 是支持快速访问，可克隆，可序列化的</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/01/ArrayList/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-（理论）HashMap、Hashtable、ConcurrentHashMap的原理与区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/01/%EF%BC%88%E7%90%86%E8%AE%BA%EF%BC%89HashMap%E3%80%81Hashtable%E3%80%81ConcurrentHashMap%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8C%BA%E5%88%AB/">（理论）HashMap、Hashtable、ConcurrentHashMap的原理与区别</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/01/%EF%BC%88%E7%90%86%E8%AE%BA%EF%BC%89HashMap%E3%80%81Hashtable%E3%80%81ConcurrentHashMap%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2020-04-01T14:54:04.306Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="（理论）HashMap、Hashtable、ConcurrentHashMap的原理与区别"><a href="#（理论）HashMap、Hashtable、ConcurrentHashMap的原理与区别" class="headerlink" title="（理论）HashMap、Hashtable、ConcurrentHashMap的原理与区别"></a>（理论）HashMap、Hashtable、ConcurrentHashMap的原理与区别</h3><h3 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a><strong>HashTable</strong></h3><ul>
+<li>底层数组+链表实现，无论key还是value都<strong>不能为null</strong>，线程<strong>安全</strong>，实现线程安全的方式是在修改数据时锁住整个HashTable，效率低，ConcurrentHashMap做了相关优化</li>
+<li>初始size为<strong>11</strong>，扩容：newsize = olesize*2+1</li>
+<li>计算index的方法：index = (hash &amp; 0x7FFFFFFF) % tab.length</li>
+</ul>
+<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a><strong>HashMap</strong></h3><ul>
+<li><p>底层数组+链表实现，可<strong>以存储null键和null值</strong>，线程<strong>不安全</strong></p>
+</li>
+<li><p>初始size为<strong>16</strong>，扩容：newsize = oldsize*2，size一定为2的n次幂</p>
+</li>
+<li><p>扩容针对整个Map，每次扩容时，原来数组中的元素依次重新计算存放位置，并重新插入</p>
+</li>
+<li><p>插入元素后才判断该不该扩容，有可能无效扩容（插入后如果扩容，如果没有再次插入，就会产生无效扩容）</p>
+</li>
+<li><p>当Map中元素总数超过Entry数组的75%，触发扩容操作，为了减少链表长度，元素分配更均匀</p>
+</li>
+<li><p>计算index方法：index = hash &amp; (tab.length – 1)</p></li></ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/01/%EF%BC%88%E7%90%86%E8%AE%BA%EF%BC%89HashMap%E3%80%81Hashtable%E3%80%81ConcurrentHashMap%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/01/%EF%BC%88%E4%BB%A3%E7%A0%81%EF%BC%89HashMap%E3%80%81Hashtable%E3%80%81ConcurrentHashMap%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8C%BA%E5%88%AB/">（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/01/%EF%BC%88%E4%BB%A3%E7%A0%81%EF%BC%89HashMap%E3%80%81Hashtable%E3%80%81ConcurrentHashMap%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2020-04-01T14:54:04.302Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别"><a href="#（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别" class="headerlink" title="（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别"></a>（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别</h3><p><strong><em>\</em>1．**</strong> <strong><em>\</em>HashMap概述**</strong></p>
+<p>Java中的数据存储方式有两种结构，一种是数组，另一种就是链表，前者的特点是连续空间，寻址迅速，但是在增删元素的时候会有较大幅度的移动，所以数组的特点是查询速度快，增删较慢。</p>
+<p>而链表由于空间不连续，寻址困难，增删元素只需修改指针，所以链表的特点是查询速度慢、增删快。</p>
+<p>那么有没有一种数据结构来综合一下数组和链表以便发挥他们各自的优势？答案就是哈希表。哈希表的存储结构如下图所示：</p>
+<p> <img src="/.com//C:%5CUsers%5C71976%5CDesktop%5C%E7%AC%94%E8%AE%B0%5Cimg%5CCenter" alt="img"></p>
+<p>从上图中，我们可以发现哈希表是由数组+链表组成的，一个长度为16的数组中，每个元素存储的是一个链表的头结点，通过功能类似于hash(key.hashCode())%len的操作，获得要添加的元素所要存放的的数组位置。</p>
+<p>HashMap的哈希算法实际操作是通过位运算，比取模运算效率更高，同样能达到使其分布均匀的目的，后面会介绍。</p>
+<p>键值对所存放的数据结构其实是HashMap中定义的一个Entity内部类，数组来实现的，属性有key、value和指向下一个Entity的next。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/01/%EF%BC%88%E4%BB%A3%E7%A0%81%EF%BC%89HashMap%E3%80%81Hashtable%E3%80%81ConcurrentHashMap%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-随机森林-Random-Forest" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/23/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-Random-Forest/">随机森林(Random Forest )</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/23/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-Random-Forest/" class="archive-article-date">
+  	<time datetime="2019-12-23T06:13:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>随机森林</strong>是一个具有高度灵活的机器学习算法，随机森林（Random Forest，简称RF）拥有广泛的应用前景,在当前的很多数据集上，相对其他算法有着很大的优势，表现良好.因为随机森林同决策树有着莫大的关系,建议读者先阅读<a href="https://blog.csdn.net/weixin_39445556/article/details/84500844" target="_blank" rel="noopener">决策树</a>相关的文章.</p>
+<p>​     其实从名字上我们就可以做一些联想.森林是什么,森林的主要构成就是树,很多很多的树,随机森林中的树就是决策树,所以随机森林就是由很多决策树构成的整体.那随机怎么理解呢?</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/23/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-Random-Forest/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-逻辑回归-logistics-regression" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/23/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-logistics-regression/">逻辑回归(logistics regression)</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/23/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-logistics-regression/" class="archive-article-date">
+  	<time datetime="2019-12-23T06:10:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 多元线性回归是用线性的关系来拟合一个事情的发生规律,找到这个规律的表达公式,将得到的数据带入公式以用来实现预测的目的,我们习惯将这类预测未来的问题称作回归问题.机器学习中按照目的不同可以分为两大类:回归和分类.今天我们一起讨论的逻辑回归就可以用来完成分类任务. </p>
+<p><strong>一.分类和回归任务的区别</strong></p>
+<p>​    我们可以按照任务的种类,将任务分为回归任务和分类任务.那这两者的区别是什么呢?按照较官方些的说法,输入变量与输出变量均为连续变量的预测问题是回归问题,输出变量为有限个离散变量的预测问题成为分类问题.</p>
+<p>​    通俗一点讲,我们要预测的结果是一个数,比如要通过一个人的饮食预测一个人的体重,体重的值可以有无限多个,有的人50kg,有的人51kg,在50和51之间也有无限多个数.这种预测结果是某一个确定数,而具体是哪个数有无限多种可能的问题,我们会训练出一个模型,传入参数后得到这个确定的数,这类问题我们称为回归问题.预测的这个变量(体重)因为有无限多种可能,在数轴上是连续的,所以我们称这种变量为连续变量.</p>
+<p>​    我们要预测一个人身体健康或者不健康,预测会得癌症或者不会得癌症,预测他是水瓶座,天蝎座还是射手座,这种结果只有几个值或者多个值的问题,我们可以把每个值都当做一类,预测对象到底属于哪一类.这样的问题称为分类问题.如果一个分类问题的结果只有两个,比如”是”和”不是”两个结果,我们把结果为”是”的样例数据称为”正例”,讲结果为”不是”的样例数据称为”负例”,对应的,这种结果的变量称为离散型变量.</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/23/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-logistics-regression/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-spark Vectors.dense()和Vectors.sparse() 密集向量和稀疏向量" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

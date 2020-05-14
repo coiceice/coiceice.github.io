@@ -167,97 +167,28 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-十分钟搞定时间复杂度（算法的时间复杂度）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-时间转换@JsonFormat、@JSONField、@DateTimeFormat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/01/%E5%8D%81%E5%88%86%E9%92%9F%E6%90%9E%E5%AE%9A%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%88%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%89/">十分钟搞定时间复杂度（算法的时间复杂度）</a>
+      <a class="article-title" href="/2020/05/14/%E6%97%B6%E9%97%B4%E8%BD%AC%E6%8D%A2@JsonFormat%E3%80%81@JSONField%E3%80%81@DateTimeFormat/">时间转换@JsonFormat、@JSONField、@DateTimeFormat</a>
     </h1>
   
 
         
-        <a href="/2020/04/01/%E5%8D%81%E5%88%86%E9%92%9F%E6%90%9E%E5%AE%9A%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%88%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-04-01T14:54:04.330Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-01</time>
+        <a href="/2020/05/14/%E6%97%B6%E9%97%B4%E8%BD%AC%E6%8D%A2@JsonFormat%E3%80%81@JSONField%E3%80%81@DateTimeFormat/" class="archive-article-date">
+  	<time datetime="2020-05-14T02:31:39.648Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="十分钟搞定时间复杂度（算法的时间复杂度）"><a href="#十分钟搞定时间复杂度（算法的时间复杂度）" class="headerlink" title="十分钟搞定时间复杂度（算法的时间复杂度）"></a>十分钟搞定时间复杂度（算法的时间复杂度）</h1><p>我们假设计算机运行一行基础代码需要执行一次运算。</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> aFunc(<span class="keyword">void</span>) &#123;</span><br><span class="line">    printf(<span class="string">"Hello, World!\n"</span>);      <span class="comment">//  需要执行 1 次</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;       <span class="comment">// 需要执行 1 次</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>那么上面这个方法需要执行 2 次运算</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> aFunc(<span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;n; i++) &#123;         <span class="comment">// 需要执行 (n + 1) 次</span></span><br><span class="line">        printf(<span class="string">"Hello, World!\n"</span>);      <span class="comment">// 需要执行 n 次</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;       <span class="comment">// 需要执行 1 次</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个方法需要 (n + 1 + n  + 1) = 2n + 2 次运算。</p>
-<p>我们把 算法需要执行的运算次数 用 输入大小n 的函数 表示，即 T(n) 。<br> 此时为了 估算算法需要的运行时间 和 简化算法分析，我们引入时间复杂度的概念。</p>
-<p>定义：存在常数 c 和函数 f(N)，使得当 N &gt;= c 时 T(N) &lt;= f(N)，表示为 T(n) = O(f(n)) 。<br> 如图：</p>
-<p><img src="https:////upload-images.jianshu.io/upload_images/2868692-072500c32dbce83f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/650/format/webp" alt="img"></p>
-<p>当 N &gt;= 2 的时候，f(n) = n^2 总是大于 T(n) = n + 2 的，于是我们说 f(n) 的增长速度是大于或者等于 T(n) 的，也说 f(n) 是 T(n) 的上界，可以表示为 T(n) = O(f(n))。</p>
-<p>因为f(n) 的增长速度是大于或者等于 T(n) 的，即T(n) = O(f(n))，所以我们可以用 f(n) 的增长速度来度量 T(n) 的增长速度，所以我们说这个算法的时间复杂度是 O(f(n))。</p>
-<p><strong>算法的时间复杂度，用来度量算法的运行时间，记作: T(n) = O(f(n))。它表示随着 输入大小n 的增大，算法执行需要的时间的增长速度可以用 f(n) 来描述。</strong></p>
-<p>显然如果 T(n) = n^2，那么 T(n) = O(n^2)，T(n) = O(n^3)，T(n) = O(n^4) 都是成立的，但是因为第一个 f(n) 的增长速度与 T(n) 是最接近的，所以第一个是最好的选择，所以我们说这个算法的复杂度是 O(n^2) 。</p>
-<p>那么当我们拿到算法的执行次数函数 T(n) 之后怎么得到算法的时间复杂度呢？</p>
-<ol>
-<li>我们知道常数项对函数的增长速度影响并不大，所以当 T(n) = c，c 为一个常数的时候，我们说这个算法的时间复杂度为 O(1)；如果 T(n) 不等于一个常数项时，直接将常数项省略。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">比如</span><br><span class="line">第一个 Hello, World 的例子中 T(n) = 2，所以我们说那个函数(算法)的时间复杂度为 O(1)。</span><br><span class="line">T(n) = n + 29，此时时间复杂度为 O(n)。</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>我们知道高次项对于函数的增长速度的影响是最大的。n^3 的增长速度是远超 n^2 的，同时 n^2 的增长速度是远超 n 的。 同时因为要求的精度不高，所以我们直接忽略低此项。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">比如</span><br><span class="line">T(n) = n^3 + n^2 + 29，此时时间复杂度为 O(n^3)。</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>因为函数的阶数对函数的增长速度的影响是最显著的，所以我们忽略与最高阶相乘的常数。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">比如</span><br><span class="line">T(n) = 3n^3，此时时间复杂度为 O(n^3)。</span><br></pre></td></tr></table></figure>
-
-<p><strong>综合起来：如果一个算法的执行次数是 T(n)，那么只保留最高次项，同时忽略最高项的系数后得到函数 f(n)，此时算法的时间复杂度就是 O(f(n))。为了方便描述，下文称此为 大O推导法。</strong></p>
-<p>由此可见，由执行次数 T(n) 得到时间复杂度并不困难，很多时候困难的是从算法通过分析和数学运算得到 T(n)。对此，提供下列四个便利的法则，这些法则都是可以简单推导出来的，总结出来以便提高效率。</p>
-<ol>
-<li>对于一个循环，假设循环体的时间复杂度为 O(n)，循环次数为 m，则这个<br> 循环的时间复杂度为 O(n×m)。</li>
-</ol>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> aFunc(<span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;         <span class="comment">// 循环次数为 n</span></span><br><span class="line">        printf(<span class="string">"Hello, World!\n"</span>);      <span class="comment">// 循环体时间复杂度为 O(1)</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>此时时间复杂度为 O(n × 1)，即 O(n)。</p>
-<ol>
-<li>对于多个循环，假设循环体的时间复杂度为 O(n)，各个循环的循环次数分别是a, b, c…，则这个循环的时间复杂度为 O(n×a×b×c…)。分析的时候应该由里向外分析这些循环。</li>
-</ol>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> aFunc(<span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;         <span class="comment">// 循环次数为 n</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;       <span class="comment">// 循环次数为 n</span></span><br><span class="line">            printf(<span class="string">"Hello, World!\n"</span>);      <span class="comment">// 循环体时间复杂度为 O(1)</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>此时时间复杂度为 O(n × n × 1)，即 O(n^2)。</p>
-<ol>
-<li>对于顺序执行的语句或者算法，总的时间复杂度等于其中最大的时间复杂度。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">void aFunc(int n) &#123;</span><br><span class="line">    // 第一部分时间复杂度为 O(n^2)</span><br><span class="line">    for(int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">        for(int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">            printf(&quot;Hello, World!\n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // 第二部分时间复杂度为 O(n)</span><br><span class="line">    for(int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">        printf(&quot;Hello, World!\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>此时时间复杂度为 max(O(n^2), O(n))，即 O(n^2)。</p>
-<ol>
-<li>对于条件判断语句，总的时间复杂度等于其中 时间复杂度最大的路径 的时间复杂度。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">void aFunc(int n) &#123;</span><br><span class="line">    if (n &gt;= 0) &#123;</span><br><span class="line">        // 第一条路径时间复杂度为 O(n^2)</span><br><span class="line">        for(int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            for(int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">                printf(&quot;输入数据大于等于零\n&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // 第二条路径时间复杂度为 O(n)</span><br><span class="line">        for(int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">            printf(&quot;输入数据小于零\n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>此时时间复杂度为 max(O(n^2), O(n))，即 O(n^2)。</p>
-<p><strong>时间复杂度分析的基本策略是：从内向外分析，从最深层开始分析。如果遇到函数调用，要深入函数进行分析。</strong></p>
-<p>最后，我们来练习一下</p>
-<p>一. 基础题<br> 求该方法的时间复杂度</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void aFunc(int n) &#123;</span><br><span class="line">    <span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (int j = i; j &lt; n; j++) &#123;</span><br><span class="line">            printf(<span class="string">"Hello World\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>参考答案：<br> 当 i = 0 时，内循环执行 n 次运算，当 i = 1 时，内循环执行 n - 1 次运算……当 i = n - 1 时，内循环执行 1 次运算。<br> 所以，执行次数 T(n) = n + (n - 1) + (n - 2)……+ 1 = n(n + 1) / 2 = n^2 / 2 + n / 2。<br> 根据上文说的 大O推导法 可以知道，此时时间复杂度为 O(n^2)。</p>
-<p>二. 进阶题<br> 求该方法的时间复杂度</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void aFunc(int n) &#123;</span><br><span class="line">    <span class="keyword">for</span> (int i = <span class="number">2</span>; i &lt; n; i++) &#123;</span><br><span class="line">        i *= <span class="number">2</span>;</span><br><span class="line">        printf(<span class="string">"%i\n"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>参考答案：<br> 假设循环次数为 t，则循环条件满足 2^t &lt; n。<br> 可以得出，执行次数t = log(2)(n)，即 T(n) = log(2)(n)，可见时间复杂度为 O(log(2)(n))，即 O(log n)。</p>
-<p>三. 再次进阶<br> 求该方法的时间复杂度</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">long aFunc(int n) &#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> aFunc(n - <span class="number">1</span>) + aFunc(n - <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>参考答案：<br> 显然运行次数，T(0) = T(1) = 1，同时 T(n) = T(n - 1) + T(n - 2) + 1，这里的 1 是其中的加法算一次执行。<br> 显然 T(n) = T(n - 1) + T(n - 2) 是一个斐波那契数列，通过归纳证明法可以证明，当 n &gt;= 1 时 T(n) &lt; (5/3)^n，同时当 n &gt; 4 时 T(n) &gt;= (3/2)^n。<br> 所以该方法的时间复杂度可以表示为 O((5/3)^n)，简化后为 O(2^n)。<br> 可见这个方法所需的运行时间是以指数的速度增长的。如果大家感兴趣，可以试下分别用 1，10，100 的输入大小来测试下算法的运行时间，相信大家会感受到时间复杂度的无穷魅力。</p>
-
+        <h2 id="时间转换-JsonFormat、-JSONField、-DateTimeFormat"><a href="#时间转换-JsonFormat、-JSONField、-DateTimeFormat" class="headerlink" title="时间转换@JsonFormat、@JSONField、@DateTimeFormat"></a>时间转换@JsonFormat、@JSONField、@DateTimeFormat</h2><h3 id="三者出处"><a href="#三者出处" class="headerlink" title="三者出处"></a>三者出处</h3><p>1、JsonFormat来源于jackson，Jackson是一个简单基于Java应用库，Jackson可以轻松的将Java对象转换成json对象和xml文档，同样也可以将json、xml转换成Java对象。Jackson所依赖的jar包较少，简单易用并且性能也要相对高些，并且Jackson社区相对比较活跃，更新速度也比较快。<br>2、JSONField来源于fastjson，是阿里巴巴的开源框架，主要进行JSON解析和序列化。<br>3、DateTimeFormat是spring自带的处理框架，主要用于将时间格式化。</p>
+        
       
 
       
@@ -269,7 +200,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/01/%E5%8D%81%E5%88%86%E9%92%9F%E6%90%9E%E5%AE%9A%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%88%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%89/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/05/14/%E6%97%B6%E9%97%B4%E8%BD%AC%E6%8D%A2@JsonFormat%E3%80%81@JSONField%E3%80%81@DateTimeFormat/">展开全文 >></a>
         </p>
       
 
@@ -299,79 +230,32 @@
 
 
   
-    <article id="post-常用的GoogleHacking语法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-为什么要实现Serializable" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/01/%E5%B8%B8%E7%94%A8%E7%9A%84GoogleHacking%E8%AF%AD%E6%B3%95/">常用的GoogleHacking语法</a>
+      <a class="article-title" href="/2020/05/14/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9E%E7%8E%B0Serializable/">为什么要实现Serializable</a>
     </h1>
   
 
         
-        <a href="/2020/04/01/%E5%B8%B8%E7%94%A8%E7%9A%84GoogleHacking%E8%AF%AD%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-04-01T14:54:04.327Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-01</time>
+        <a href="/2020/05/14/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9E%E7%8E%B0Serializable/" class="archive-article-date">
+  	<time datetime="2020-05-14T02:31:20.421Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>常用的GoogleHacking语法：</strong></p>
-<p>1.intext：把网页的正文内容中的某个字符作为搜索的条件</p>
-<p><img src="/.com//C:%5CUsers%5C71976%5CDesktop%5C%E7%AC%94%E8%AE%B0%5Cimg%5C61d29bbb06204defbf86cbc770961417.jpeg" alt="img"></p>
-<p>2.intitle：把网页标题中的某个字符作为搜索的条件</p>
-<p><img src="/.com//C:%5CUsers%5C71976%5CDesktop%5C%E7%AC%94%E8%AE%B0%5Cimg%5Ca489a3b02fda43189a726f76ae551ecb.jpeg" alt="img"></p>
-<p>3.cache：搜索搜索引擎里关于某些内容的缓存，可能会在过期内容中发现有价值的信息</p>
-<p><img src="/.com//C:%5CUsers%5C71976%5CDesktop%5C%E7%AC%94%E8%AE%B0%5Cimg%5Cc96f99d17779485fa6758854bbd621a9.jpeg" alt="img"></p>
-<p>4.filetype：指定一个格式类型的文件作为搜索对象</p>
-<p><img src="/.com//C:%5CUsers%5C71976%5CDesktop%5C%E7%AC%94%E8%AE%B0%5Cimg%5C5fdb2ba3cf2b44c78b1e5e3529c20a56.jpeg" alt="img"></p>
-<p>5.inurl：搜索包含指定字符的URL</p>
-<p><img src="/.com//C:%5CUsers%5C71976%5CDesktop%5C%E7%AC%94%E8%AE%B0%5Cimg%5C5095050315d54abbb026a65b632e24c2.jpeg" alt="img"></p>
-<p>6.site：在指定的站点搜索相关内容</p>
-<p><img src="/.com//C:%5CUsers%5C71976%5CDesktop%5C%E7%AC%94%E8%AE%B0%5Cimg%5Cf30e7a91c315414895b4026bb8413c24.jpeg" alt="img"></p>
-<p>上图可以看到语法可以合起来使用</p>
-<p>其他GoogleHacking语法：</p>
-<p>1.【引号 “ ”】把关键字打上引号后把引号部分作为整体来搜索</p>
-<p>2.【or 】同时搜索两个或者更多的关键字</p>
-<p>3.l【ink：】搜索某个网站的链接</p>
-<p>典型用法：</p>
-<p>1.找管理后台地址</p>
-<blockquote>
-</blockquote>
-<blockquote>
-<p>site:xxx.com intext:管理、后台、登录、用户名、密码、系统、帐号</p>
-</blockquote>
-<blockquote>
-<p>site:xxx.com inurl:login、admin、manage、manager、admin_login、system</p>
-</blockquote>
-<blockquote>
-<p>site:xxx.com intitle:管理、后台、登陆</p>
-</blockquote>
-<p>2.找上传类漏洞地址</p>
-<blockquote>
-</blockquote>
-<blockquote>
-<p>site:xxx.com inurl:file</p>
-</blockquote>
-<blockquote>
-<p>site:xxx.com inurl:upload</p>
-</blockquote>
-<p>3.找注入页面</p>
-<blockquote>
-</blockquote>
-<blockquote>
-<p>site:xxx.com inurl:php?id=</p>
-</blockquote>
-<p>4.找编辑器页面</p>
-<blockquote>
-</blockquote>
-<blockquote>
-<p>site:xxx.com inurl:ewebeditor</p>
-</blockquote>
-<p>（上面：你懂得）</p>
+        <h1 id="为什么要实现Serializable"><a href="#为什么要实现Serializable" class="headerlink" title="为什么要实现Serializable"></a>为什么要实现Serializable</h1><p>　　工作中我们经常在进行持久化操作和返回数据时都会使用到javabean来统一封装参数，方便操作，一般我们也都会实现Serializable接口，那么问题来了，首先：为什么要进行序列化；其次：每个实体bean都必须实现serializabel接口吗？最后：我做一些项目的时候，没有实现序列化，同样没什么影响，到底什么时候应该进行序列化操作呢？</p>
+<p>　　网上找了很多资料，但是感觉大都没有说的很清楚，所以结合自己的理解做一下总结。</p>
+<p>　　首先第一个问题，实现序列化的两个原因：1、将对象的状态保存在存储媒体中以便可以在以后重新创建出完全相同的副本；2、按值将对象从一个应用程序域发送至另一个应用程序域。实现serializabel接口的作用是就是可以把对象存到字节流，然后可以恢复，所以你想如果你的对象没实现序列化怎么才能进行持久化和网络传输呢，要持久化和网络传输就得转为字节流，所以在分布式应用中及设计数据持久化的场景中，你就得实现序列化。</p>
+<p>　　第二个问题，是不是每个实体bean都要实现序列化，答案其实还要回归到第一个问题，那就是你的bean是否需要持久化存储媒体中以及是否需要传输给另一个应用，没有的话就不需要，例如我们利用fastjson将实体类转化成json字符串时，并不涉及到转化为字节流，所以其实跟序列化没有关系。</p>
+<p>　　第三个问题，有的时候并没有实现序列化，依然可以持久化到数据库。这个其实我们可以看看实体类中常用的数据类型，例如Date、String等等，它们已经实现了序列化，而一些基本类型，数据库里面有与之对应的数据结构，从我们的类声明来看，我们没有实现serializabel接口，其实是在声明的各个不同变量的时候，由具体的数据类型帮助我们实现了序列化操作。</p>
+<p>　　另外需要注意的是，在NoSql数据库中，并没有与我们java基本类型对应的数据结构，所以在往nosql数据库中存储时，我们就必须将对象进行序列化，同时在网络传输中我们要注意到两个应用中javabean的serialVersionUID要保持一致，不然就不能正常的进行反序列化。</p>
 
       
 
@@ -384,7 +268,355 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/01/%E5%B8%B8%E7%94%A8%E7%9A%84GoogleHacking%E8%AF%AD%E6%B3%95/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/05/14/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AE%9E%E7%8E%B0Serializable/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringMVC常用注解@Controller,@Service,@repository,@Component" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/14/SpringMVC%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3@Controller,@Service,@repository,@Component/">SpringMVC常用注解@Controller,@Service,@repository,@Component</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/14/SpringMVC%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3@Controller,@Service,@repository,@Component/" class="archive-article-date">
+  	<time datetime="2020-05-14T02:31:02.040Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="SpringMVC常用注解-Controller-Service-repository-Component"><a href="#SpringMVC常用注解-Controller-Service-repository-Component" class="headerlink" title="SpringMVC常用注解@Controller,@Service,@repository,@Component"></a>SpringMVC常用注解@Controller,@Service,@repository,@Component</h3><p><strong>controller层使用@controller注解</strong></p>
+<p> @Controller 用于标记在一个类上，使用它标记的类就是一个SpringMVC Controller 对象。分发处理器将会扫描使用了该注解的类的方法。通俗来说，被Controller标记的类就是一个控制器，这个类中的方法，就是相应的动作。<br>@RequestMapping是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。比如图一中，跳转到登录页面的路径就是localhost:8080/xxx-war/user/toLogin </p>
+<p><strong>service采用@service注解</strong></p>
+<p> 例：@Service(“userService”)注解是告诉spring，当Spring要创建UserServiceImpl的的实例时，bean的名字必须叫做”userService”，这样当Action需要使用UserServiceImpl的的实例时,就可以由Spring创建好的”userService”，然后注入给Action。 </p>
+<p><strong>dao层使用@repository注解</strong></p>
+<p>@Repository(value=”userDao”)注解是告诉Spring，让Spring创建一个名字叫“userDao”的UserDaoImpl实例。<br>当Service需要使用Spring创建的名字叫“userDao”的UserDaoImpl实例时，就可以使用@Resource(name = “userDao”)注解告诉Spring，Spring把创建好的userDao注入给Service即可。</p>
+<p>@Autowired可以对成员变量、方法和构造函数进行标注，来完成自动装配的工作，我们也要清楚，@Autowired是根据类型进行自动装配的。</p>
+<p><strong>mapper层使用@Component注解</strong></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/14/SpringMVC%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3@Controller,@Service,@repository,@Component/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ResponseEntity和@ResponseBody以及@ResponseStatus区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/14/ResponseEntity%E5%92%8C@ResponseBody%E4%BB%A5%E5%8F%8A@ResponseStatus%E5%8C%BA%E5%88%AB/">ResponseEntity和@ResponseBody以及@ResponseStatus区别</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/14/ResponseEntity%E5%92%8C@ResponseBody%E4%BB%A5%E5%8F%8A@ResponseStatus%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2020-05-14T02:30:37.075Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ResponseEntity和-ResponseBody以及-ResponseStatus区别"><a href="#ResponseEntity和-ResponseBody以及-ResponseStatus区别" class="headerlink" title="ResponseEntity和@ResponseBody以及@ResponseStatus区别"></a>ResponseEntity和@ResponseBody以及@ResponseStatus区别</h1><p>　　ResponseEntity 表示整个HTTP响应：状态代码，标题和正文。因此，我们可以使用它来完全配置HTTP响应，它是一个对象，而<em>@ResponseBody</em>和@ResponseStatus是注解，适合于简单直接的场合。</p>
+<p>　　<em>@ResponseBody</em>一般与@Controller组合使用，用来返回JSON字符串：</p>
+<ul>
+<li>@Controller</li>
+<li><em>@ResponseBody</em></li>
+</ul>
+<p>　　而ResponseStatus一般与RestController组合使用：</p>
+<ul>
+<li>@RestController</li>
+<li>@ResponseStatus</li>
+</ul>
+<h2 id><a href="#" class="headerlink" title></a></h2><p>@ResponseStatus无法设置标题，也无法设置HttpServletResponse或HttpHeaders参数，但是很简单方便。</p>
+<p>ResponseEntity让你做更多的定制工作。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/14/ResponseEntity%E5%92%8C@ResponseBody%E4%BB%A5%E5%8F%8A@ResponseStatus%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Java中length、length()、size()的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/14/Java%E4%B8%ADlength%E3%80%81length()%E3%80%81size()%E7%9A%84%E5%8C%BA%E5%88%AB/">Java中length、length()、size()的区别</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/14/Java%E4%B8%ADlength%E3%80%81length()%E3%80%81size()%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2020-05-14T02:30:16.804Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java中length、length-、size-的区别"><a href="#Java中length、length-、size-的区别" class="headerlink" title="Java中length、length()、size()的区别"></a>Java中length、length()、size()的区别</h1><h5 id="首先区分一下length和length-；"><a href="#首先区分一下length和length-；" class="headerlink" title="首先区分一下length和length()；"></a>首先区分一下length和length()；</h5><p>length不是方法，是属性，数组的属性；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	int[] intArray = &#123;1,2,3&#125;;</span><br><span class="line">	System.out.println(&quot;这个数组的长度为：&quot; + intArray.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>length()是字符串String的一个方法；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	String str = &quot;HelloWorld&quot;;</span><br><span class="line">	System.out.println(&quot;这个字符串的长度为：&quot; + str.length());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/14/Java%E4%B8%ADlength%E3%80%81length()%E3%80%81size()%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-cookie和session的关系、负载均衡如何实现session一致、会话如何建立" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/14/cookie%E5%92%8Csession%E7%9A%84%E5%85%B3%E7%B3%BB%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0session%E4%B8%80%E8%87%B4%E3%80%81%E4%BC%9A%E8%AF%9D%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B/">cookie和session的关系、负载均衡如何实现session一致、会话如何建立</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/14/cookie%E5%92%8Csession%E7%9A%84%E5%85%B3%E7%B3%BB%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0session%E4%B8%80%E8%87%B4%E3%80%81%E4%BC%9A%E8%AF%9D%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B/" class="archive-article-date">
+  	<time datetime="2020-05-14T02:29:56.292Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="cookie和session的关系、负载均衡如何实现session一致、会话如何建立"><a href="#cookie和session的关系、负载均衡如何实现session一致、会话如何建立" class="headerlink" title="cookie和session的关系、负载均衡如何实现session一致、会话如何建立"></a>cookie和session的关系、负载均衡如何实现session一致、会话如何建立</h1><p>session：就是识别身份，解决用户身份（角色）问题<br>身份分两种：<br>1 有账号密码的那种身份<br>2 身份来源，例如客户机A与客户机B的请求就是两种身份<br>一个会话包括上下文信息：分两种信息<br>1 发送请求的这个用户自己的信息<br>2 服务器信息</p>
+<p>cookie与session的关系</p>
+<p>1 cookie记录在客户端，记录在浏览器<br>2 cookie是浏览器生成的，cookie脱离了浏览器就没有价值了<br>3 cookie是记录用户访问浏览器的必要信息，只要是http会话都会有cookie<br>4 cookie也是能做会话的，那为什么还要用session：为了安全</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/14/cookie%E5%92%8Csession%E7%9A%84%E5%85%B3%E7%B3%BB%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0session%E4%B8%80%E8%87%B4%E3%80%81%E4%BC%9A%E8%AF%9D%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-十分钟搞定时间复杂度（算法的时间复杂度）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/01/%E5%8D%81%E5%88%86%E9%92%9F%E6%90%9E%E5%AE%9A%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%88%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%89/">十分钟搞定时间复杂度（算法的时间复杂度）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/01/%E5%8D%81%E5%88%86%E9%92%9F%E6%90%9E%E5%AE%9A%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%88%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-04-01T14:54:04.330Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="十分钟搞定时间复杂度（算法的时间复杂度）"><a href="#十分钟搞定时间复杂度（算法的时间复杂度）" class="headerlink" title="十分钟搞定时间复杂度（算法的时间复杂度）"></a>十分钟搞定时间复杂度（算法的时间复杂度）</h1><p>我们假设计算机运行一行基础代码需要执行一次运算。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> aFunc(<span class="keyword">void</span>) &#123;</span><br><span class="line">    printf(<span class="string">"Hello, World!\n"</span>);      <span class="comment">//  需要执行 1 次</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;       <span class="comment">// 需要执行 1 次</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么上面这个方法需要执行 2 次运算</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> aFunc(<span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;n; i++) &#123;         <span class="comment">// 需要执行 (n + 1) 次</span></span><br><span class="line">        printf(<span class="string">"Hello, World!\n"</span>);      <span class="comment">// 需要执行 n 次</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;       <span class="comment">// 需要执行 1 次</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个方法需要 (n + 1 + n  + 1) = 2n + 2 次运算。</p>
+<p>我们把 算法需要执行的运算次数 用 输入大小n 的函数 表示，即 T(n) 。<br> 此时为了 估算算法需要的运行时间 和 简化算法分析，我们引入时间复杂度的概念。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/01/%E5%8D%81%E5%88%86%E9%92%9F%E6%90%9E%E5%AE%9A%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%88%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%89/">展开全文 >></a>
         </p>
       
 
@@ -439,34 +671,8 @@
     &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre><h4 id="2-配置aplication-yml"><a href="#2-配置aplication-yml" class="headerlink" title="2.配置aplication.yml"></a>2.配置aplication.yml</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  redis:</span><br><span class="line">    host: 192.168.1.8</span><br><span class="line">    password: xSjXY^0,GQeJ4*35</span><br></pre></td></tr></table></figure>
 
-<h4 id="3-编写RedisConfig类"><a href="#3-编写RedisConfig类" class="headerlink" title="3.编写RedisConfig类"></a>3.编写RedisConfig类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableCaching//开启注解</span><br><span class="line">public class RedisConfig &#123;</span><br><span class="line">    /**</span><br><span class="line"></span><br><span class="line">配置redisTemplate,主要指定key和value的序列化方式</span><br><span class="line"> @param connectionFactory</span><br><span class="line"></span><br><span class="line">   * @return</span><br><span class="line">     /</span><br><span class="line">         @Bean</span><br><span class="line">      public RedisTemplate&lt;Object, Object&gt; redisTemplate(RedisConnectionFactory connectionFactory)&#123;</span><br><span class="line">     RedisTemplate&lt;Object, Object&gt; template=new RedisTemplate&lt;Object, Object&gt;();</span><br><span class="line">     template.setConnectionFactory(connectionFactory);</span><br><span class="line">     //实现序列化和反序列化redis的key值</span><br><span class="line">     template.setKeySerializer(new StringRedisSerializer());</span><br><span class="line">     //实现序列化和反序列化redis的value值,默认使用JdkSerializationRedisSerializer</span><br><span class="line">     //template.setValueSerializer(new RedisObjectSerializer());</span><br><span class="line">     //template.setValueSerializer();</span><br><span class="line">     return template;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 配置缓存管理器</span><br><span class="line">     * @param redisTemplate</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @Bean</span><br><span class="line">    public CacheManager cacheManager(RedisTemplate&lt;Object, Object&gt; redisTemplate) &#123;</span><br><span class="line">        RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);</span><br><span class="line">        /**</span><br><span class="line">         * 指定缓存的名称</span><br><span class="line">         */</span><br><span class="line">        cacheManager.setCacheNames(Arrays.asList(&quot;cars&quot;,&quot;series&quot;,&quot;models&quot;));</span><br><span class="line">        cacheManager.setUsePrefix(true);</span><br><span class="line">        /**</span><br><span class="line">         * 设置过期时间</span><br><span class="line">         */</span><br><span class="line">        cacheManager.setDefaultExpiration(1800L);</span><br><span class="line">        return cacheManager;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">     * key生成策略</span><br><span class="line">     * */</span><br><span class="line">    @Bean</span><br><span class="line">    public KeyGenerator accountKeyGenerator() &#123;</span><br><span class="line">        return new KeyGenerator()&#123;</span><br><span class="line">            @Override</span><br><span class="line">            public Object generate(Object target, Method method, Object... params) &#123;</span><br><span class="line">                return target.getClass().toString() ;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-在service中使用注解进行缓存"><a href="#4-在service中使用注解进行缓存" class="headerlink" title="4.在service中使用注解进行缓存"></a>4.在service中使用注解进行缓存</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    @Cacheable(value = &quot;cars&quot; , keyGenerator  = &quot;accountKeyGenerator&quot;)</span><br><span class="line">    public JsonResult carBrands() &#123;</span><br><span class="line">        HttpHeaders httpHeaders = new HttpHeaders();</span><br><span class="line">        httpHeaders.add(&quot;auth&quot;, DigestUtils.md5Hex(appKey+&quot;:&quot;+secret));</span><br><span class="line">        HttpEntity&lt;String&gt; entity = new HttpEntity&lt;&gt;(null, httpHeaders);</span><br><span class="line">        JsonResult body = restTemplate.exchange(remoteServiceHost + &quot;/foo&quot;,</span><br><span class="line">                HttpMethod.POST, entity, JsonResult.class).getBody();</span><br><span class="line">        System.out.println(&quot; remote from &quot;);</span><br><span class="line">        return body;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    @Cacheable(value = &quot;series&quot; , key = &quot;&apos;series&apos;+#id&quot;)</span><br><span class="line">    public JsonResult findCarSeries(Integer id) &#123;</span><br><span class="line">        HttpHeaders httpHeaders = new HttpHeaders();</span><br><span class="line">        httpHeaders.add(&quot;auth&quot;, DigestUtils.md5Hex(appKey+&quot;:&quot;+secret));</span><br><span class="line">        HttpEntity&lt;String&gt; entity = new HttpEntity&lt;&gt;(null, httpHeaders);</span><br><span class="line">        JsonResult body = restTemplate.exchange(remoteServiceHost + &quot;/foo?brandsId=&quot;+id,</span><br><span class="line">                HttpMethod.GET, entity, JsonResult.class).getBody();</span><br><span class="line">        System.out.println(&quot; remote from &quot;);</span><br><span class="line">        return body;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    @Cacheable(value = &quot;models&quot; ,key = &quot;&apos;models&apos;+#id&quot;)</span><br><span class="line">    public JsonResult findCarModels(Integer id) &#123;</span><br><span class="line">        HttpHeaders httpHeaders = new HttpHeaders();</span><br><span class="line">        httpHeaders.add(&quot;auth&quot;, DigestUtils.md5Hex(appKey+&quot;:&quot;+secret));</span><br><span class="line">        HttpEntity&lt;String&gt; entity = new HttpEntity&lt;&gt;(null, httpHeaders);</span><br><span class="line">        JsonResult body = restTemplate.exchange(remoteServiceHost + &quot;foo?seriesId=&quot;+id,</span><br><span class="line">                HttpMethod.GET, entity, JsonResult.class).getBody();</span><br><span class="line">        System.out.println(&quot; remote from &quot;);</span><br><span class="line">        return body;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">####</span><br></pre></td></tr></table></figure>
-
-<h4 id="springboot整合redis常用的一些注解"><a href="#springboot整合redis常用的一些注解" class="headerlink" title="springboot整合redis常用的一些注解"></a>springboot整合redis常用的一些注解</h4><h5 id="Cacheable"><a href="#Cacheable" class="headerlink" title="@Cacheable"></a>@Cacheable</h5><p>可作用于方法或类上，用在类上所有方法起作用。该注解主要用于缓存执行后的结果。@Cacheable可以指定三个属性，value、key、condition，value用于指定作用的缓存对象名称，可以为多个，key指定缓存的建，可以取方法的参数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Cacheable(value=&quot;users&quot;, key=&quot;#id&quot;)</span><br><span class="line">public User find(Integer id) &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Cacheable(value=&quot;users&quot;, key=&quot;#p0&quot;)</span><br><span class="line">public User find(Integer id) &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Cacheable(value=&quot;users&quot;, key=&quot;#user.id&quot;)</span><br><span class="line">public User find(User user) &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Cacheable(value=&quot;users&quot;, key=&quot;#p0.id&quot;)</span><br><span class="line">public User find(User user) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h6 id="condition属性指定发生的条件"><a href="#condition属性指定发生的条件" class="headerlink" title="condition属性指定发生的条件"></a>condition属性指定发生的条件</h6><p>有的时候我们可能并不希望缓存一个方法所有的返回结果。通过condition属性可以实现这一功能。condition属性默认为空，表示将缓存所有的调用情形。其值是通过SpringEL表达式来指定的，当为true时表示进行缓存处理；当为false时表示不进行缓存处理，即每次调用该方法时该方法都会执行一次。如下示例表示只有当user的id为偶数时才会进行缓存</p>
-<pre><code>@Cacheable(value={&quot;users&quot;}, key=&quot;#user.id&quot;, condition=&quot;#user.id%2==0&quot;)
-public User find(User user) {
-    return user;
-}</code></pre><h5 id="2-CachePut"><a href="#2-CachePut" class="headerlink" title="2.@CachePut"></a>2.@CachePut</h5><p>在支持Spring Cache的环境下，对于使用@Cacheable标注的方法，Spring在每次执行前都会检查Cache中是否存在相同key的缓存元素，如果存在就不再执行该方法，而是直接从缓存中获取结果进行返回，否则才会执行并将返回结果存入指定的缓存中。@CachePut也可以声明一个方法支持缓存功能。与@Cacheable不同的是使用@CachePut标注的方法在执行前不会去检查缓存中是否存在之前执行过的结果，而是每次都会执行该方法，并将执行结果以键值对的形式存入指定的缓存中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@CachePut(&quot;users&quot;)//每次都会执行方法，并将结果存入指定的缓存中</span><br><span class="line">   public User find(Integer id) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="3-CacheEvict"><a href="#3-CacheEvict" class="headerlink" title="3.@CacheEvict"></a>3.@CacheEvict</h5><p>@CacheEvict是用来标注在需要清除缓存元素的方法或类上的。当标记在一个类上时表示其中所有的方法的执行都会触发缓存的清除操作。</p>
-<p>@CacheEvict可以指定的属性有value、key、condition、allEntries和beforeInvocation。其中value、key和condition的语义与@Cacheable对应的属性类似。即value表示清除操作是发生在哪些Cache上的（对应Cache的名称）；key表示需要清除的是哪个key，如未指定则会使用默认策略生成的key；condition表示清除操作发生的条件。下面我们来介绍一下新出现的两个属性allEntries和beforeInvocation。 </p>
-<h6 id="allEntries属性"><a href="#allEntries属性" class="headerlink" title="allEntries属性"></a>allEntries属性</h6><p>allEntries是boolean类型，表示是否需要清除缓存中的所有元素。默认为false，表示不需要。当指定了allEntries为true时，Spring Cache将忽略指定的key。有的时候我们需要Cache一下清除所有的元素，这比一个一个清除元素更有效率。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@CacheEvict(value=&quot;users&quot;, allEntries=true)</span><br><span class="line">  public void delete(Integer id) </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h6 id="beforeInvocation属性"><a href="#beforeInvocation属性" class="headerlink" title="beforeInvocation属性"></a>beforeInvocation属性</h6><p>清除操作默认是在对应方法成功执行之后触发的，即方法如果因为抛出异常而未能成功返回时也不会触发清除操作。使用beforeInvocation可以改变触发清除操作的时间，当我们指定该属性值为true时，Spring会在调用该方法之前清除缓存中的指定元素。</p>
-<p>beforeInvocation属性<br>清除操作默认是在对应方法成功执行之后触发的，即方法如果因为抛出异常而未能成功返回时也不会触发清除操作。使用beforeInvocation可以改变触发清除操作的时间，当我们指定该属性值为true时，Spring会在调用该方法之前清除缓存中的指定元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@CacheEvict(value=&quot;users&quot;, beforeInvocation=true)</span><br><span class="line">   public void delete(Integer id) &#123;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-
+<h4 id="3-编写RedisConfig类"><a href="#3-编写RedisConfig类" class="headerlink" title="3.编写RedisConfig类"></a>3.编写RedisConfig类</h4>
+        
       
 
       
@@ -621,655 +827,6 @@ public User find(User user) {
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/04/01/Inversion%20Of%20Control%20%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ArrayList" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/01/ArrayList/">ArrayList</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/01/ArrayList/" class="archive-article-date">
-  	<time datetime="2020-04-01T14:54:04.309Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p>ArrayList 可能是很多人使用得最为频繁的容器类了，ArrayList 实现了 List 接口，是一个有序容器，即存放元素的顺序与添加顺序相同，允许添加相同元素，包括 null ，底层通过数组来实现数据存储，容器内存储的元素个数不能超出数组空间。所以向容器中添加元素时如果发现数组空间不足，容器会自动对底层数组进行扩容操作</p>
-<h4 id="一、ArrayList-的类声明"><a href="#一、ArrayList-的类声明" class="headerlink" title="一、ArrayList 的类声明"></a>一、ArrayList 的类声明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class ArrayList&lt;E&gt; extends AbstractList&lt;E&gt;</span><br><span class="line">        implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable</span><br></pre></td></tr></table></figure>
-
-<p>从其实现的几个接口可以看出来，ArrayList 是支持快速访问，可克隆，可序列化的</p>
-<h4 id="二、包含的成员变量"><a href="#二、包含的成员变量" class="headerlink" title="二、包含的成员变量"></a>二、包含的成员变量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//序列化ID</span><br><span class="line">private static final long serialVersionUID = 8683452581122892189L;</span><br><span class="line"></span><br><span class="line">//集合默认的初始大小</span><br><span class="line">private static final int DEFAULT_CAPACITY = 10;</span><br><span class="line"></span><br><span class="line">//如果外部为集合设置的初始化大小为 0，则 elementData 指向空数组对象 EMPTY_ELEMENTDATA</span><br><span class="line">private static final Object[] EMPTY_ELEMENTDATA = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">//如果在初始化集合时使用的是无参数的构造函数，则 elementData 指向空数组对象 DEFAULTCAPACITY_EMPTY_ELEMENTDATA</span><br><span class="line">private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">//包含实际元素的数组</span><br><span class="line">transient Object[] elementData;</span><br><span class="line"></span><br><span class="line">//集合大小</span><br><span class="line">private int size;</span><br></pre></td></tr></table></figure>
-
-<p><strong>elementData</strong> 是一个 <strong>Object</strong> 类型的数组对象，即可用来存放任何对象类型，也是 ArrarList 中用来存放数据的容器。而 ArrayList 是一个泛型类，我们在初始化时就直接指定了数据类型，Java泛型只是编译器为我们提供的语法糖，方便我们在向 elementData 存取数据时，将之自动转换为特定的类型</p>
-<h4 id="三、包含的构造函数"><a href="#三、包含的构造函数" class="headerlink" title="三、包含的构造函数"></a>三、包含的构造函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//指定集合的初始容量，以此来进行数组的初始化操作</span><br><span class="line">   public ArrayList(int initialCapacity) &#123;</span><br><span class="line">       if (initialCapacity &gt; 0) &#123;</span><br><span class="line">           this.elementData = new Object[initialCapacity];</span><br><span class="line">       &#125; else if (initialCapacity == 0) &#123;</span><br><span class="line">           this.elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">       &#125; else &#123;</span><br><span class="line">           throw new IllegalArgumentException(&quot;Illegal Capacity: &quot;+initialCapacity);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   //使用默认的初始化大小</span><br><span class="line">   public ArrayList() &#123;</span><br><span class="line">       this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   //传入一份初始数据，以此进行初始化</span><br><span class="line">   public ArrayList(Collection&lt;? extends E&gt; c) &#123;</span><br><span class="line">       elementData = c.toArray();</span><br><span class="line">       if ((size = elementData.length) != 0) &#123;</span><br><span class="line">           // c.toArray might (incorrectly) not return Object[] (see 6260652)</span><br><span class="line">           if (elementData.getClass() != Object[].class)</span><br><span class="line">               elementData = Arrays.copyOf(elementData, size, Object[].class);</span><br><span class="line">       &#125; else &#123;</span><br><span class="line">           this.elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以在初始化 ArrayList 的时候传入集合的初始化大小，这通常来说都是更为高效率一些的，因为如果是让集合在赋值的过程中自动扩容，则可能会需要进行多次扩容操作，而每次扩容都需要复制原有数据到新数组，这会导致运行效率降低</p>
-<h4 id="四、添加-修改-元素"><a href="#四、添加-修改-元素" class="headerlink" title="四、添加/修改 元素"></a>四、添加/修改 元素</h4><p>在获取指定索引处的元素时，都是直接通过坐标指向该元素 <code>(E) elementData[index]</code>，而无需从头开始遍历集合，所以说 ArrayList 的遍历效率较高</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//通过索引直接访问数组</span><br><span class="line">   @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">   E elementData(int index) &#123;</span><br><span class="line">       return (E) elementData[index];</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   //获取索引 index 处的元素值</span><br><span class="line">   public E get(int index) &#123;</span><br><span class="line">       rangeCheck(index);</span><br><span class="line">       return elementData(index);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   //将索引 index 出的元素值置为 element，并返回原始数值</span><br><span class="line">   public E set(int index, E element) &#123;</span><br><span class="line">       rangeCheck(index);</span><br><span class="line">       E oldValue = elementData(index);</span><br><span class="line">       elementData[index] = element;</span><br><span class="line">       return oldValue;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>ArrayList 在存入数据时相对来说就不是那么理想了</p>
-<p>如果是直接向集合尾端添加数据 <code>add(E e)</code>，则先检查是否需要扩容，需要的话则创建一个新的符合大小的数组，并将原数组中的元素移到新数组中，再向数组尾端添加待存入的元素</p>
-<p>如果是向集合非尾端位置添加数据 <code>add(int index, E element)</code>，一样需要先检查是否需要扩容，然后将数组中索引 index 后的所有元素向后推移一位，然后将 element 插入到空出的位置上</p>
-<p>由此看出来，向集合添加元素由于可能会导致数组扩容，从而导致数组元素的大量移动，所以说 ArrayList 存入数据的效率并不高</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//向集合添加数据</span><br><span class="line">public boolean add(E e) &#123;</span><br><span class="line">    //检查是否需要扩容</span><br><span class="line">    ensureCapacityInternal(size + 1);</span><br><span class="line">    //赋值</span><br><span class="line">    elementData[size++] = e;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//将元素 element 添加索引 index 位置</span><br><span class="line">public void add(int index, E element) &#123;</span><br><span class="line">    rangeCheckForAdd(index);</span><br><span class="line">    //检查是否需要扩容</span><br><span class="line">    ensureCapacityInternal(size + 1);</span><br><span class="line">    //将索引 index 后的所有数值向后推移一位 </span><br><span class="line">    System.arraycopy(elementData, index, elementData, index + 1,size - index);</span><br><span class="line">    //将 element 插入到空出的位置</span><br><span class="line">    elementData[index] = element;</span><br><span class="line">    //集合大小加1</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>以上说的是存入单个元素，此外还有存入整个集合的情况</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">//向集合添加数据</span><br><span class="line">   //如果待添加的数据不为空则返回 true，否则返回 false</span><br><span class="line">   public boolean addAll(Collection&lt;? extends E&gt; c) &#123;</span><br><span class="line">       Object[] a = c.toArray();</span><br><span class="line">       int numNew = a.length;</span><br><span class="line">       //检查是否需要扩容</span><br><span class="line">       ensureCapacityInternal(size + numNew);</span><br><span class="line">       //将数组 a 复制到 elementData 的尾端</span><br><span class="line">       System.arraycopy(a, 0, elementData, size, numNew);</span><br><span class="line">       size += numNew;</span><br><span class="line">       return numNew != 0;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   //从指定索引处添加数据</span><br><span class="line">   //如果待添加的数据不为空则返回 true，否则返回 false</span><br><span class="line">   public boolean addAll(int index, Collection&lt;? extends E&gt; c) &#123;</span><br><span class="line">       rangeCheckForAdd(index);</span><br><span class="line">       Object[] a = c.toArray();</span><br><span class="line">       int numNew = a.length;</span><br><span class="line">       //检查是否需要扩容</span><br><span class="line">       ensureCapacityInternal(size + numNew);</span><br><span class="line">       //需要移动的数组元素数量</span><br><span class="line">       int numMoved = size - index;</span><br><span class="line">       //因为要添加的数据可能刚好是从数组最尾端开始添加，所以 numMoved 可能为 0</span><br><span class="line">       //所以只在 numMoved &gt; 0 的时候才需要对数组的元素值进行移动，以此空出位置给数组 a</span><br><span class="line">       if (numMoved &gt; 0)</span><br><span class="line">           System.arraycopy(elementData, index, elementData, index + numNew, numMoved);</span><br><span class="line">       //将数组 a 包含的数据添加到 elementData 中</span><br><span class="line">       System.arraycopy(a, 0, elementData, index, numNew);</span><br><span class="line">       size += numNew;</span><br><span class="line">       return numNew != 0;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="五、移除元素"><a href="#五、移除元素" class="headerlink" title="五、移除元素"></a>五、移除元素</h4><p>再看下移除元素的方法</p>
-<p>因为数组是一种内存地址连续的数据结构，所以移除某个元素同样可能导致大量元素的移动</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">//移除指定索引处的元素值，并返回该值</span><br><span class="line">   public E remove(int index) &#123;</span><br><span class="line">       rangeCheck(index);</span><br><span class="line">       modCount++;</span><br><span class="line">       //待移除的元素值</span><br><span class="line">       E oldValue = elementData(index);</span><br><span class="line">       //因为要移除元素导致需要移动的元素数量</span><br><span class="line">       int numMoved = size - index - 1;</span><br><span class="line">       //因为要移除的元素可能刚好是数组最后一位，所以 numMoved 可能为 0</span><br><span class="line">       //所以只在 numMoved &gt; 0 的时候才需要对数组的元素值进行移动</span><br><span class="line">       if (numMoved &gt; 0)</span><br><span class="line">           System.arraycopy(elementData, index+1, elementData, index, numMoved);</span><br><span class="line">       //不管数组是否需要对元素值进行移动，数组的最后一位都是无效数据了</span><br><span class="line">       //此处将之置为 null 以帮助GC回收                </span><br><span class="line">       elementData[--size] = null;</span><br><span class="line">       return oldValue;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   //移除集合中包含的第一位元素值为 o 的对象</span><br><span class="line">   //如果包含该对象，则返回 true ，否则返回 false</span><br><span class="line">   public boolean remove(Object o) &#123;</span><br><span class="line">       if (o == null) &#123;</span><br><span class="line">           for (int index = 0; index &lt; size; index++)</span><br><span class="line">               if (elementData[index] == null) &#123;</span><br><span class="line">                   fastRemove(index);</span><br><span class="line">                   return true;</span><br><span class="line">               &#125;</span><br><span class="line">       &#125; else &#123;</span><br><span class="line">           for (int index = 0; index &lt; size; index++)</span><br><span class="line">               if (o.equals(elementData[index])) &#123;</span><br><span class="line">                   fastRemove(index);</span><br><span class="line">                   return true;</span><br><span class="line">               &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return false;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="六、扩容机制"><a href="#六、扩容机制" class="headerlink" title="六、扩容机制"></a>六、扩容机制</h4><p>以上多处说到了数组的扩容，这里就来看下数组的扩容机制</p>
-<p>实际进行扩容操作的是 <code>int grow(int minCapacity)</code> 方法，参数 minCapacity 用于指定要求的最小空间，在扩容前，会先判断如果将当前容量提升到当前的 1.5 倍是否能达到 minCapacity 的要求 ，如果符合要求则直接将数据扩充到当前的 1.5 倍容量，否则则扩充到 minCapacity ，构建一个新的符合大小的数组后，就将原数组中的元素复制到新数组中</p>
-<p>由此可想到，如果在初始化 ArrayList 前已知目标数据的数据量，则最好使用 <code>ArrayList(int initialCapacity)</code>来进行初始化，直接让底层数组扩充到目标大小，避免之后赋值过程中多次扩容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">//触发集合进行扩容操作，参数 minCapacity 表示集合扩容后的最小空间</span><br><span class="line">   //如果在向集合进行赋值操作前已知数据量大小，则直接调用此方法让集合直接扩容到该大小有助于提高集合的运行效率</span><br><span class="line">   //如果是让集合在赋值的过程中自动扩容，则可能会需要进行多次扩容操作，而每次扩容都需要复制原有数据到新数组，这会导致运行效率降低</span><br><span class="line">   public void ensureCapacity(int minCapacity) &#123;</span><br><span class="line">       //1. 如果当前数组还未进行任何赋值操作，即 elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA，则数组空间只由参数 minCapacity 影响</span><br><span class="line">       //2. 如果当前数组已进行过赋值操作，即 elementData != DEFAULTCAPACITY_EMPTY_ELEMENTDATA，则当前数组大小可能还是在使用默认容量 DEFAULT_CAPACITY</span><br><span class="line">       //   则此时只有当 minCapacity 大于 DEFAULT_CAPACITY 时，才需要进行扩容</span><br><span class="line">       int minExpand = (elementData != DEFAULTCAPACITY_EMPTY_ELEMENTDATA)</span><br><span class="line">           // any size if not default element table</span><br><span class="line">           ? 0</span><br><span class="line">           // larger than default for default empty table. It&apos;s already</span><br><span class="line">           // supposed to be at default size.</span><br><span class="line">           : DEFAULT_CAPACITY;</span><br><span class="line"></span><br><span class="line">       if (minCapacity &gt; minExpand) &#123;</span><br><span class="line">           ensureExplicitCapacity(minCapacity);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   //检查当前的数组容量，minCapacity 用于指定当前需要的最小空间</span><br><span class="line">   //如果数组容量没有达到一定标准，则需要进行扩容</span><br><span class="line">   private void ensureCapacityInternal(int minCapacity) &#123;</span><br><span class="line">       if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) &#123;</span><br><span class="line">           //数组空间至少需要扩容到 DEFAULT_CAPACITY</span><br><span class="line">           minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);</span><br><span class="line">       &#125;</span><br><span class="line">       ensureExplicitCapacity(minCapacity);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   private void ensureExplicitCapacity(int minCapacity) &#123;</span><br><span class="line">       modCount++;</span><br><span class="line">       //如果当前数组大小的确是比需要的最小空间 minCapacity 小，则进行扩容</span><br><span class="line">       if (minCapacity - elementData.length &gt; 0)</span><br><span class="line">           grow(minCapacity);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   //数组可扩充到的最大空间</span><br><span class="line">   private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;</span><br><span class="line"></span><br><span class="line">   //对数组进行扩容</span><br><span class="line">   private void grow(int minCapacity) &#123;</span><br><span class="line">       //扩容前的数组大小</span><br><span class="line">       int oldCapacity = elementData.length;</span><br><span class="line">       //oldCapacity &gt;&gt; 1 的含义即为：将 oldCapacity 值除以 2</span><br><span class="line">       //即先假设扩容后的空间大小是原先的1.5倍</span><br><span class="line">       int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1);</span><br><span class="line">       //如果 newCapacity 依然是达不到最小空间要求，则直接将空间扩大到由 minCapacity 指定的大小</span><br><span class="line">       if (newCapacity - minCapacity &lt; 0)</span><br><span class="line">           newCapacity = minCapacity;</span><br><span class="line">       //如果扩容后的数组空间超出了最大容量限制，则将容量定为 Integer.MAX_VALUE</span><br><span class="line">       if (newCapacity - MAX_ARRAY_SIZE &gt; 0)</span><br><span class="line">           newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">       //构建符合容量大小的数组并复制原数组的数据</span><br><span class="line">       elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="七、遍历集合的方法"><a href="#七、遍历集合的方法" class="headerlink" title="七、遍历集合的方法"></a>七、遍历集合的方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//遍历集合元素</span><br><span class="line">   @Override</span><br><span class="line">   public void forEach(Consumer&lt;? super E&gt; action) &#123;</span><br><span class="line">       Objects.requireNonNull(action);</span><br><span class="line">       final int expectedModCount = modCount;</span><br><span class="line">       @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">       final E[] elementData = (E[]) this.elementData;</span><br><span class="line">       final int size = this.size;</span><br><span class="line">       //如果 modCount 值被改动，则直接停止遍历并抛出异常</span><br><span class="line">       for (int i=0; modCount == expectedModCount &amp;&amp; i &lt; size; i++) &#123;</span><br><span class="line">           //将集合元素依次传递给 accept 方法</span><br><span class="line">           action.accept(elementData[i]);</span><br><span class="line">       &#125;</span><br><span class="line">       if (modCount != expectedModCount) &#123;</span><br><span class="line">           throw new ConcurrentModificationException();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="八、遍历并过滤集合的方法"><a href="#八、遍历并过滤集合的方法" class="headerlink" title="八、遍历并过滤集合的方法"></a>八、遍历并过滤集合的方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">//按照给定规则对集合元素进行过滤，如果元素符合过滤规则 filter 则将之移除</span><br><span class="line">   @Override</span><br><span class="line">   public boolean removeIf(Predicate&lt;? super E&gt; filter) &#123;</span><br><span class="line">       Objects.requireNonNull(filter);</span><br><span class="line">       //要移除的元素个数</span><br><span class="line">       int removeCount = 0;</span><br><span class="line">       //用于标记集合是哪个索引位置需要被移除</span><br><span class="line">       final BitSet removeSet = new BitSet(size);</span><br><span class="line">       final int expectedModCount = modCount;</span><br><span class="line">       final int size = this.size;</span><br><span class="line">       for (int i=0; modCount == expectedModCount &amp;&amp; i &lt; size; i++) &#123;</span><br><span class="line">           @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">           final E element = (E) elementData[i];</span><br><span class="line">           //依次判断集合元素是否符合过滤规则</span><br><span class="line">           if (filter.test(element)) &#123;</span><br><span class="line">               //set 方法将导致索引位置 i 的元素变为 true</span><br><span class="line">               removeSet.set(i);</span><br><span class="line">               removeCount++;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       if (modCount != expectedModCount) &#123;</span><br><span class="line">           throw new ConcurrentModificationException();</span><br><span class="line">       &#125;</span><br><span class="line">       //只有 removeCount &gt; 0 才说明需要移除元素</span><br><span class="line">       final boolean anyToRemove = removeCount &gt; 0;</span><br><span class="line">       if (anyToRemove) &#123;</span><br><span class="line">           //集合移除指定元素后的大小</span><br><span class="line">           final int newSize = size - removeCount;</span><br><span class="line">           for (int i=0, j=0; (i &lt; size) &amp;&amp; (j &lt; newSize); i++, j++) &#123;</span><br><span class="line">               //略过被标记为 true 的位置，直接跳到不需要移除元素的数组索引位</span><br><span class="line">               i = removeSet.nextClearBit(i);</span><br><span class="line">               //有效数据逐渐从尾部向头部聚集</span><br><span class="line">               elementData[j] = elementData[i];</span><br><span class="line">           &#125;</span><br><span class="line">           //移除尾部的无效数据，帮助GC回收</span><br><span class="line">           for (int k=newSize; k &lt; size; k++) &#123;</span><br><span class="line">               elementData[k] = null;</span><br><span class="line">           &#125;</span><br><span class="line">           this.size = newSize;</span><br><span class="line">           if (modCount != expectedModCount) &#123;</span><br><span class="line">               throw new ConcurrentModificationException();</span><br><span class="line">           &#125;</span><br><span class="line">           modCount++;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       return anyToRemove;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   //将集合元素遍历传递给 operator，并将原始数据替换为 operator 的返回值</span><br><span class="line">   @Override</span><br><span class="line">   @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">   public void replaceAll(UnaryOperator&lt;E&gt; operator) &#123;</span><br><span class="line">       Objects.requireNonNull(operator);</span><br><span class="line">       final int expectedModCount = modCount;</span><br><span class="line">       final int size = this.size;</span><br><span class="line">       for (int i=0; modCount == expectedModCount &amp;&amp; i &lt; size; i++) &#123;</span><br><span class="line">           //依次传递数组元素给 apply 方法，并将其返回值替换原始数据</span><br><span class="line">           elementData[i] = operator.apply((E) elementData[i]);</span><br><span class="line">       &#125;</span><br><span class="line">       //不允许在排序的过程中集合被其它方法修改了数据结构（例如：移除元素）</span><br><span class="line">       if (modCount != expectedModCount) &#123;</span><br><span class="line">           throw new ConcurrentModificationException();</span><br><span class="line">       &#125;</span><br><span class="line">       modCount++;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="九、迭代器"><a href="#九、迭代器" class="headerlink" title="九、迭代器"></a>九、迭代器</h4><p>在这里有个小细节，ArrayList 里多处使用到了 modCount 这个参数，每当集合的结构发生变化时，modCount 就会递增，当在对集合进行迭代操作时，迭代器会检查此参数值，如果检查到此参数的值发生变化，就说明在迭代的过程中集合的结构发生了变化，此时迭代的元素可能就并不是最新的了，因此会直接抛出异常</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">//返回集合迭代器</span><br><span class="line">  public Iterator&lt;E&gt; iterator() &#123;</span><br><span class="line">      return new Itr();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  //一个优化版本的迭代器</span><br><span class="line">  private class Itr implements Iterator&lt;E&gt; &#123;</span><br><span class="line">      </span><br><span class="line">      //lastRet 指向的元素的下一个元素的索引</span><br><span class="line">      int cursor;</span><br><span class="line"></span><br><span class="line">      //最后一个返回的元素的索引</span><br><span class="line">      //如果值为 -1，说明还未返回过元素或者改元素被移除了</span><br><span class="line">      int lastRet = -1;</span><br><span class="line"></span><br><span class="line">      //用于验证集合的数据结构在迭代的过程中是否被修改了</span><br><span class="line">      int expectedModCount = modCount;</span><br><span class="line"></span><br><span class="line">      //是否还有元素未被遍历</span><br><span class="line">      public boolean hasNext() &#123;</span><br><span class="line">          return cursor != size;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      //获取下一个元素</span><br><span class="line">      @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">      public E next() &#123;</span><br><span class="line">          checkForComodification();</span><br><span class="line">          int i = cursor;</span><br><span class="line">          //如果索引值超出集合的可索引范围则抛出异常</span><br><span class="line">          if (i &gt;= size)</span><br><span class="line">              throw new NoSuchElementException();</span><br><span class="line">          Object[] elementData = ArrayList.this.elementData;</span><br><span class="line">          //如果索引值超出数组的可索引范围则抛出异常</span><br><span class="line">          if (i &gt;= elementData.length)</span><br><span class="line">              throw new ConcurrentModificationException();</span><br><span class="line">          //游标递增</span><br><span class="line">          cursor = i + 1;</span><br><span class="line">          return (E) elementData[lastRet = i];</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      //移除 lastRet 位置的元素</span><br><span class="line">      public void remove() &#123;</span><br><span class="line">          if (lastRet &lt; 0)</span><br><span class="line">              throw new IllegalStateException();</span><br><span class="line">          checkForComodification();</span><br><span class="line">          try &#123;</span><br><span class="line">              ArrayList.this.remove(lastRet);</span><br><span class="line">              //因为 lastRet 位置原始的元素被移除了，所以此时 lastRet 指向的元素是原先 lastRet+1 位置的元素</span><br><span class="line">              cursor = lastRet;</span><br><span class="line">              lastRet = -1;</span><br><span class="line">              //因为是 Itr 主动对集合进行修改，所以此处需要主动更新 expectedModCount 值，避免之后抛出异常</span><br><span class="line">              expectedModCount = modCount;</span><br><span class="line">          &#125; catch (IndexOutOfBoundsException ex) &#123;</span><br><span class="line">              throw new ConcurrentModificationException();</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      //遍历集合从索引 cursor 开始之后剩下的元素</span><br><span class="line">      @Override</span><br><span class="line">      @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">      public void forEachRemaining(Consumer&lt;? super E&gt; consumer) &#123;</span><br><span class="line">          Objects.requireNonNull(consumer);</span><br><span class="line">          final int size = ArrayList.this.size;</span><br><span class="line">          int i = cursor;</span><br><span class="line">          if (i &gt;= size) &#123;</span><br><span class="line">              return;</span><br><span class="line">          &#125;</span><br><span class="line">          final Object[] elementData = ArrayList.this.elementData;</span><br><span class="line">          if (i &gt;= elementData.length) &#123;</span><br><span class="line">              throw new ConcurrentModificationException();</span><br><span class="line">          &#125;</span><br><span class="line">          //遍历调用 accept 方法</span><br><span class="line">          while (i != size &amp;&amp; modCount == expectedModCount) &#123;</span><br><span class="line">              consumer.accept((E) elementData[i++]);</span><br><span class="line">          &#125;</span><br><span class="line">          cursor = i;</span><br><span class="line">          lastRet = i - 1;</span><br><span class="line">          checkForComodification();</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      //判断迭代器在遍历集合的过程中，集合是否被外部改动了（例如被其它迭代器移除了元素）</span><br><span class="line">      //如果是的话则抛出异常</span><br><span class="line">      final void checkForComodification() &#123;</span><br><span class="line">          if (modCount != expectedModCount)</span><br><span class="line">              throw new ConcurrentModificationException();</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="十、效率测试"><a href="#十、效率测试" class="headerlink" title="十、效率测试"></a>十、效率测试</h4><p>最后来测试下 ArrayList 扩容次数的高低对其运行效率的影响</p>
-<p>对三个 ArrayList 存入相同数据量的数据，但分别为 ArrayList 指定不同的初始化大小</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">        //开始时间</span><br><span class="line">        long startTime = System.currentTimeMillis();</span><br><span class="line">        List&lt;String&gt; stringList = new ArrayList&lt;&gt;();</span><br><span class="line">        for (int i = 0; i &lt; 300000; i++) &#123;</span><br><span class="line">            stringList.add(&quot;leavesC &quot; + i);</span><br><span class="line">        &#125;</span><br><span class="line">        //结束时间</span><br><span class="line">        long endTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(&quot;不指定初始大小，所用时间：&quot; + (endTime - startTime) + &quot;毫秒&quot;);</span><br><span class="line"></span><br><span class="line">        //开始时间</span><br><span class="line">        startTime = System.currentTimeMillis();</span><br><span class="line">        List&lt;String&gt; stringList2 = new ArrayList&lt;&gt;(100000);</span><br><span class="line">        for (int i = 0; i &lt; 300000; i++) &#123;</span><br><span class="line">            stringList2.add(&quot;leavesC &quot; + i);</span><br><span class="line">        &#125;</span><br><span class="line">        //结束时间</span><br><span class="line">        endTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(&quot;指定初始大小为目标数据量的三分之一，所用时间：&quot; + (endTime - startTime)+ &quot;毫秒&quot;);</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">        //开始时间</span><br><span class="line">        startTime = System.currentTimeMillis();</span><br><span class="line">        List&lt;String&gt; stringList3 = new ArrayList&lt;&gt;(300000);</span><br><span class="line">        for (int i = 0; i &lt; 300000; i++) &#123;</span><br><span class="line">            stringList3.add(&quot;leavesC &quot; + i);</span><br><span class="line">        &#125;</span><br><span class="line">        //结束时间</span><br><span class="line">        endTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(&quot;指定初始大小为目标数据量，所用时间：&quot; + (endTime - startTime)+ &quot;毫秒&quot;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看出来，各种方式之间的运行效率差距还是很大的（根据运行环境的不同，测试数据肯定会有所差距）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">不指定初始大小，所用时间：29毫秒</span><br><span class="line">指定初始大小为目标数据量的三分之一，所用时间：25毫秒</span><br><span class="line">指定初始大小为目标数据量，所用时间：12毫秒</span><br></pre></td></tr></table></figure>
-
-<p>关于 ArrayList 的内容就讲到这里了，一方面是篇幅所限，一方面我是觉得很多知识点其实也不需要怎么讲，直接看源码的话认知会更为深刻一点，因此我也把对 ArrayList 的详细源码注释开源到了 GitHub 上，欢迎关注</p>
-<h4 id="源码地址：AndroidAllGuide"><a href="#源码地址：AndroidAllGuide" class="headerlink" title="源码地址：AndroidAllGuide"></a>源码地址：<a href="https://github.com/leavesC/AndroidAllGuide" target="_blank" rel="noopener">AndroidAllGuide</a></h4>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/01/ArrayList/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-（理论）HashMap、Hashtable、ConcurrentHashMap的原理与区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/01/%EF%BC%88%E7%90%86%E8%AE%BA%EF%BC%89HashMap%E3%80%81Hashtable%E3%80%81ConcurrentHashMap%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8C%BA%E5%88%AB/">（理论）HashMap、Hashtable、ConcurrentHashMap的原理与区别</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/01/%EF%BC%88%E7%90%86%E8%AE%BA%EF%BC%89HashMap%E3%80%81Hashtable%E3%80%81ConcurrentHashMap%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2020-04-01T14:54:04.306Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="（理论）HashMap、Hashtable、ConcurrentHashMap的原理与区别"><a href="#（理论）HashMap、Hashtable、ConcurrentHashMap的原理与区别" class="headerlink" title="（理论）HashMap、Hashtable、ConcurrentHashMap的原理与区别"></a>（理论）HashMap、Hashtable、ConcurrentHashMap的原理与区别</h3><h3 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a><strong>HashTable</strong></h3><ul>
-<li>底层数组+链表实现，无论key还是value都<strong>不能为null</strong>，线程<strong>安全</strong>，实现线程安全的方式是在修改数据时锁住整个HashTable，效率低，ConcurrentHashMap做了相关优化</li>
-<li>初始size为<strong>11</strong>，扩容：newsize = olesize*2+1</li>
-<li>计算index的方法：index = (hash &amp; 0x7FFFFFFF) % tab.length</li>
-</ul>
-<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a><strong>HashMap</strong></h3><ul>
-<li>底层数组+链表实现，可<strong>以存储null键和null值</strong>，线程<strong>不安全</strong></li>
-<li>初始size为<strong>16</strong>，扩容：newsize = oldsize*2，size一定为2的n次幂</li>
-<li>扩容针对整个Map，每次扩容时，原来数组中的元素依次重新计算存放位置，并重新插入</li>
-<li>插入元素后才判断该不该扩容，有可能无效扩容（插入后如果扩容，如果没有再次插入，就会产生无效扩容）</li>
-<li>当Map中元素总数超过Entry数组的75%，触发扩容操作，为了减少链表长度，元素分配更均匀</li>
-<li>计算index方法：index = hash &amp; (tab.length – 1)</li>
-</ul>
-<p>HashMap的初始值还要考虑加载因子:</p>
-<ul>
-<li><strong>哈希冲突</strong>：若干Key的哈希值按数组大小取模后，如果落在同一个数组下标上，将组成一条Entry链，对Key的查找需要遍历Entry链上的每个元素执行equals()比较。</li>
-<li><strong>加载因子</strong>：为了降低哈希冲突的概率，默认当HashMap中的键值对达到数组大小的75%时，即会触发扩容。因此，如果预估容量是100，即需要设定100/0.75＝134的数组大小。</li>
-<li><strong>*空间换时间</strong>：如果希望加快Key查找的时间，还可以进一步降低加载因子，加大初始大小，以降低哈希冲突的概率。*</li>
-</ul>
-<p>HashMap和Hashtable都是用hash算法来决定其元素的存储，因此HashMap和Hashtable的hash表包含如下属性：</p>
-<ul>
-<li>容量（capacity）：hash表中桶的数量</li>
-<li>初始化容量（initial capacity）：创建hash表时桶的数量，HashMap允许在构造器中指定初始化容量</li>
-<li>尺寸（size）：当前hash表中记录的数量</li>
-<li>负载因子（load factor）：负载因子等于“size/capacity”。负载因子为0，表示空的hash表，0.5表示半满的散列表，依此类推。轻负载的散列表具有冲突少、适宜插入与查询的特点（但是使用Iterator迭代元素时比较慢）</li>
-</ul>
-<p>除此之外，hash表里还有一个“负载极限”，“负载极限”是一个0～1的数值，“负载极限”决定了hash表的最大填满程度。当hash表中的负载因子达到指定的“负载极限”时，hash表会自动成倍地增加容量（桶的数量），并将原有的对象重新分配，放入新的桶内，这称为rehashing。</p>
-<p>HashMap和Hashtable的构造器允许指定一个负载极限，HashMap和Hashtable默认的“负载极限”为0.75，这表明当该hash表的3/4已经被填满时，hash表会发生rehashing。</p>
-<p>“负载极限”的默认值（0.75）是时间和空间成本上的一种折中：</p>
-<ul>
-<li>较高的“负载极限”可以降低hash表所占用的内存空间，但会增加查询数据的时间开销，而查询是最频繁的操作（HashMap的get()与put()方法都要用到查询）</li>
-<li>较低的“负载极限”会提高查询数据的性能，但会增加hash表所占用的内存开销</li>
-</ul>
-<p>程序猿可以根据实际情况来调整“负载极限”值。</p>
-<h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a><strong>ConcurrentHashMap</strong></h3><ul>
-<li>底层采用分段的数组+链表实现，线程<strong>安全</strong></li>
-<li>通过把整个Map分为N个Segment，可以提供相同的线程安全，但是效率提升N倍，默认提升16倍。(读操作不加锁，由于HashEntry的value变量是 volatile的，也能保证读取到最新的值。)</li>
-<li>Hashtable的synchronized是针对整张Hash表的，即每次锁住整张表让线程独占，ConcurrentHashMap允许多个修改操作并发进行，其关键在于使用了锁分离技术</li>
-<li>有些方法需要跨段，比如size()和containsValue()，它们可能需要锁定整个表而而不仅仅是某个段，这需要按顺序锁定所有段，操作完毕后，又按顺序释放所有段的锁</li>
-<li>扩容：段内扩容（段内元素超过该段对应Entry数组长度的75%触发扩容，不会对整个Map进行扩容），插入前检测需不需要扩容，有效避免无效扩容</li>
-</ul>
-<p>Hashtable和HashMap都实现了Map接口，但是Hashtable的实现是基于Dictionary抽象类的。Java5提供了ConcurrentHashMap，它是HashTable的替代，比HashTable的扩展性更好。</p>
-<p>HashMap基于哈希思想，实现对数据的读写。当我们将键值对传递给put()方法时，它调用键对象的hashCode()方法来计算hashcode，然后找到bucket位置来存储值对象。当获取对象时，通过键对象的equals()方法找到正确的键值对，然后返回值对象。HashMap使用链表来解决碰撞问题，当发生碰撞时，对象将会储存在链表的下一个节点中。HashMap在每个链表节点中储存键值对对象。当两个不同的键对象的hashcode相同时，它们会储存在同一个bucket位置的链表中，可通过键对象的equals()方法来找到键值对。如果链表大小超过阈值（TREEIFY_THRESHOLD,8），链表就会被改造为树形结构。</p>
-<p>在HashMap中，null可以作为键，这样的键只有一个，但可以有一个或多个键所对应的值为null。<strong>当get()方法返回null值时，即可以表示HashMap中没有该key，也可以表示该key所对应的value为null</strong>。因此，在HashMap中不能由get()方法来判断HashMap中是否存在某个key，应该用<strong>containsKey()</strong>方法来判断。而在Hashtable中，无论是key还是value都不能为null。</p>
-<p>Hashtable是线程安全的，它的方法是同步的，可以直接用在多线程环境中。而HashMap则不是线程安全的，在多线程环境中，需要手动实现同步机制。</p>
-<p>Hashtable与HashMap另一个区别是HashMap的迭代器（Iterator）是fail-fast迭代器，而Hashtable的enumerator迭代器不是fail-fast的。所以当有其它线程改变了HashMap的结构（增加或者移除元素），将会抛出ConcurrentModificationException，但迭代器本身的remove()方法移除元素则不会抛出ConcurrentModificationException异常。但这并不是一个一定发生的行为，要看JVM。</p>
-<p>先看一下简单的类图：</p>
-<p><img src="/.com//C:%5CUsers%5C71976%5CDesktop%5C%E7%AC%94%E8%AE%B0%5Cimg%5C1a20c1a7-c422-374b-9acf-8c33479586cb.jpg" alt="img"></p>
-<p>从类图中可以看出来在存储结构中ConcurrentHashMap比HashMap多出了一个类Segment，而Segment是一个可重入锁。</p>
-<p>ConcurrentHashMap是使用了锁分段技术来保证线程安全的。</p>
-<p><strong>锁分段技术</strong>：首先将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。 </p>
-<p>ConcurrentHashMap提供了与Hashtable和SynchronizedMap不同的锁机制。Hashtable中采用的锁机制是一次锁住整个hash表，从而在同一时刻只能由一个线程对其进行操作；而ConcurrentHashMap中则是一次锁住一个桶。</p>
-<p>ConcurrentHashMap默认将hash表分为16个桶，诸如get、put、remove等常用操作只锁住当前需要用到的桶。这样，原来只能一个线程进入，现在却能同时有16个写线程执行，并发性能的提升是显而易见的。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/01/%EF%BC%88%E7%90%86%E8%AE%BA%EF%BC%89HashMap%E3%80%81Hashtable%E3%80%81ConcurrentHashMap%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8C%BA%E5%88%AB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/01/%EF%BC%88%E4%BB%A3%E7%A0%81%EF%BC%89HashMap%E3%80%81Hashtable%E3%80%81ConcurrentHashMap%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8C%BA%E5%88%AB/">（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/01/%EF%BC%88%E4%BB%A3%E7%A0%81%EF%BC%89HashMap%E3%80%81Hashtable%E3%80%81ConcurrentHashMap%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2020-04-01T14:54:04.302Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别"><a href="#（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别" class="headerlink" title="（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别"></a>（代码）HashMap、Hashtable、ConcurrentHashMap的原理与区别</h3><p><strong><em>\</em>1．**</strong> <strong><em>\</em>HashMap概述**</strong></p>
-<p>Java中的数据存储方式有两种结构，一种是数组，另一种就是链表，前者的特点是连续空间，寻址迅速，但是在增删元素的时候会有较大幅度的移动，所以数组的特点是查询速度快，增删较慢。</p>
-<p>而链表由于空间不连续，寻址困难，增删元素只需修改指针，所以链表的特点是查询速度慢、增删快。</p>
-<p>那么有没有一种数据结构来综合一下数组和链表以便发挥他们各自的优势？答案就是哈希表。哈希表的存储结构如下图所示：</p>
-<p> <img src="/.com//C:%5CUsers%5C71976%5CDesktop%5C%E7%AC%94%E8%AE%B0%5Cimg%5CCenter" alt="img"></p>
-<p>从上图中，我们可以发现哈希表是由数组+链表组成的，一个长度为16的数组中，每个元素存储的是一个链表的头结点，通过功能类似于hash(key.hashCode())%len的操作，获得要添加的元素所要存放的的数组位置。</p>
-<p>HashMap的哈希算法实际操作是通过位运算，比取模运算效率更高，同样能达到使其分布均匀的目的，后面会介绍。</p>
-<p>键值对所存放的数据结构其实是HashMap中定义的一个Entity内部类，数组来实现的，属性有key、value和指向下一个Entity的next。</p>
-<p><strong><em>\</em>2．\</strong> *<em>HashMap*</em>*<em>初始化***</em></p>
-<p>HashMap有两种常用的构造方法：</p>
-<p>第一种是不需要参数的构造方法：</p>
-<ol>
-<li><strong>static</strong> <strong>final</strong> <strong>int</strong> DEFAULT_INITIAL_CAPACITY = 16; //初始数组长度为16 </li>
-<li><strong>static</strong> <strong>final</strong> <strong>int</strong> MAXIMUM_CAPACITY = 1 &lt;&lt; 30; //最大容量为2的30次方 </li>
-<li>//装载因子用来衡量HashMap满的程度 </li>
-<li>//计算HashMap的实时装载因子的方法为：size/capacity </li>
-<li><strong>static</strong> <strong>final</strong> <strong>float</strong> DEFAULT_LOAD_FACTOR = 0.75f; //装载因子 </li>
-<li></li>
-<li><strong>public</strong> HashMap() {  </li>
-<li><strong>this</strong>.loadFactor = DEFAULT_LOAD_FACTOR;  </li>
-<li>threshold = (<strong>int</strong>)(DEFAULT_INITIAL_CAPACITY * DEFAULT_LOAD_FACTOR); </li>
-<li>//默认数组长度为16  </li>
-<li>table = <strong>new</strong> Entry[DEFAULT_INITIAL_CAPACITY]; </li>
-<li>init();  </li>
-<li>}  </li>
-</ol>
-<p>第二种是需要参数的构造方法：</p>
-<ol>
-<li><strong>public</strong> HashMap(<strong>int</strong> initialCapacity, <strong>float</strong> loadFactor) {  </li>
-<li>​    <strong>if</strong> (initialCapacity &lt; 0)  </li>
-<li>​      <strong>throw</strong> <strong>new</strong> IllegalArgumentException(“Illegal initial capacity: “ + initialCapacity);  </li>
-<li>​    <strong>if</strong> (initialCapacity &gt; MAXIMUM_CAPACITY)  </li>
-<li>​      initialCapacity = MAXIMUM_CAPACITY;  </li>
-<li>​    <strong>if</strong> (loadFactor &lt;= 0 || Float.isNaN(loadFactor))  </li>
-<li>​      <strong>throw</strong> <strong>new</strong> IllegalArgumentException(“Illegal load factor: “ + loadFactor);  </li>
-<li></li>
-<li>​    // Find a power of 2 &gt;= initialCapacity  </li>
-<li>​    <strong>int</strong> capacity = 1;  </li>
-<li>​    <strong>while</strong> (capacity &lt; initialCapacity)  </li>
-<li>​      capacity &lt;&lt;= 1;  </li>
-<li></li>
-<li>​    <strong>this</strong>.loadFactor = loadFactor;  </li>
-<li>​    threshold = (<strong>int</strong>)(capacity * loadFactor);  </li>
-<li>​    table = <strong>new</strong> Entry[capacity];  </li>
-<li>​    init();  </li>
-<li>}  </li>
-</ol>
-<p>从源码可以看出，初始化的数组长度为capacity，capacity的值总是2的N次方，大小比第一个参数稍大或相等。</p>
-<p><strong>3.</strong>  <strong>HashMap的put操作</strong></p>
-<ol>
-<li><strong>public</strong> V put(K key, V value) {  </li>
-<li>​    <strong>if</strong> (key == <strong>null</strong>)  </li>
-<li>​     <strong>return</strong> putForNullKey(value);  </li>
-<li>​    <strong>int</strong> hash = hash(key.hashCode());  </li>
-<li>​    <strong>int</strong> i = indexFor(hash, table.length);  </li>
-<li>​    <strong>for</strong> (Entry&lt;K,V&gt; e = table[i]; e != <strong>null</strong>; e = e.next) {  </li>
-<li>​      Object k;  </li>
-<li>​      <strong>if</strong> (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k))) {  </li>
-<li>​        V oldValue = e.value;  </li>
-<li>​        e.value = value;  </li>
-<li>​        e.recordAccess(<strong>this</strong>);  </li>
-<li>​        <strong>return</strong> oldValue;  </li>
-<li>​      }  </li>
-<li>​    }     </li>
-<li>modCount++;  </li>
-<li>​    addEntry(hash, key, value, i);  </li>
-<li>​    <strong>return</strong> <strong>null</strong>;  </li>
-<li>}  </li>
-</ol>
-<p><strong>3.1</strong>  <strong>put进的key为null</strong></p>
-<p>从源码中可以看出，HashMap是允许key为null的，会调用putForNullKey()方法：</p>
-<p>[java] <a href="https://blog.csdn.net/seu_calvin/article/details/52653711#" target="_blank" rel="noopener">view plain</a> <a href="https://blog.csdn.net/seu_calvin/article/details/52653711#" target="_blank" rel="noopener">copy</a></p>
-<ol>
-<li><strong>private</strong> V putForNullKey(V value) {  </li>
-<li>​    <strong>for</strong> (Entry&lt;K,V&gt; e = table[0]; e != <strong>null</strong>; e = e.next) {  </li>
-<li>​      <strong>if</strong> (e.key == <strong>null</strong>) {  </li>
-<li>​        V oldValue = e.value;  </li>
-<li>​        e.value = value;  </li>
-<li>​        e.recordAccess(<strong>this</strong>);  </li>
-<li>​        <strong>return</strong> oldValue;  </li>
-<li>​      }  </li>
-<li>​    }  </li>
-<li>​    modCount++;  </li>
-<li>​    addEntry(0, <strong>null</strong>, value, 0);  </li>
-<li>​    <strong>return</strong> <strong>null</strong>;  </li>
-<li>}  </li>
-<li></li>
-<li><strong>void</strong> addEntry(<strong>int</strong> hash, K key, V value, <strong>int</strong> bucketIndex) {  </li>
-<li>Entry&lt;K,V&gt; e = table[bucketIndex];  </li>
-<li>​    table[bucketIndex] = <strong>new</strong> Entry&lt;K,V&gt;(hash, key, value, e);  </li>
-<li>​    <strong>if</strong> (size++ &gt;= threshold)  </li>
-<li>​      resize(2 * table.length);  </li>
-<li>}  </li>
-</ol>
-<p>putForNullKey方法会遍历以table[0]为链表头的链表，如果存在key为null的KV，那么替换其value值并返回旧值。否则调用addEntry方法，这个方法也很简单，将[null,value]放在table[0]的位置，并将新加入的键值对封装成一个Entity对象，将其next指向原table[0]处的Entity实例。</p>
-<p>size表示HashMap中存放的所有键值对的数量。</p>
-<p>threshold = capacity*loadFactor，最后几行代码表示当HashMap的size大于threshold时会执行resize操作，将HashMap扩容为原来的2倍。扩容需要重新计算每个元素在数组中的位置，indexFor()方法中的table.length参数也证明了这一点。</p>
-<p>但是扩容是一个非常消耗性能的操作，所以如果我们已经预知HashMap中元素的个数，那么预设元素的个数能够有效的提高HashMap的性能。比如说我们有1000个元素，那么我们就该声明new HashMap(2048)，因为需要考虑默认的0.75的扩容因子和数组数必须是2的N次方。若使用声明new HashMap(1024)那么put过程中会进行扩容。</p>
-<p><strong>3.2</strong>  <strong>put进的key不为null</strong></p>
-<p>将上述put方法中的相关代码复制一下方便查看：</p>
-<ol>
-<li><strong>int</strong> hash = hash(key.hashCode());  </li>
-<li><strong>int</strong> i = indexFor(hash, table.length);  </li>
-<li><strong>for</strong> (Entry&lt;K,V&gt; e = table[i]; e != <strong>null</strong>; e = e.next) {  </li>
-<li>Object k;  </li>
-<li><strong>if</strong> (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k))) {  </li>
-<li>​    V oldValue = e.value;  </li>
-<li>​    e.value = value;  </li>
-<li>​    e.recordAccess(<strong>this</strong>);  </li>
-<li>​    <strong>return</strong> oldValue;  </li>
-<li>​    }  </li>
-<li>}     </li>
-<li>modCount++;  </li>
-<li>addEntry(hash, key, value, i);  </li>
-<li><strong>return</strong> <strong>null</strong>;  </li>
-<li>} </li>
-</ol>
-<p>从源码可以看出，第1、2行计算将要put进的键值对的数组的位置i。第4行判断加入的key是否和以table[i]为链表头的链表中所有的键值对有重复，若重复则替换value并返回旧值，若没有重复则调用addEntry方法，上面对这个方法的逻辑已经介绍过了。</p>
-<p>至此HashMap的put操作已经介绍完毕了。</p>
-<p><strong>4.</strong>  <strong>HashMap的get操作</strong></p>
-<ol>
-<li><strong>public</strong> V get(Object key) {  </li>
-<li><strong>if</strong> (key == <strong>null</strong>)  </li>
-<li>​    <strong>return</strong> getForNullKey();  </li>
-<li><strong>int</strong> hash = hash(key.hashCode());  </li>
-<li><strong>for</strong> (Entry&lt;K,V&gt; e = table[indexFor(hash, table.length)]; e != <strong>null</strong>; e = e.next) {  </li>
-<li>​      Object k;  </li>
-<li>​      <strong>if</strong> (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k))) </li>
-<li>​        <strong>return</strong> e.value;  </li>
-<li>​    }  </li>
-<li><strong>return</strong> <strong>null</strong>;  </li>
-<li>}  </li>
-<li></li>
-<li><strong>private</strong> V getForNullKey() {  </li>
-<li><strong>for</strong> (Entry&lt;K,V&gt; e = table[0]; e != <strong>null</strong>; e = e.next) {  </li>
-<li><strong>if</strong> (e.key == <strong>null</strong>)  </li>
-<li><strong>return</strong> e.value;  </li>
-<li>}  </li>
-<li><strong>return</strong> <strong>null</strong>;  </li>
-<li>}  </li>
-</ol>
-<p>如果了解了前面的put操作，那么这里的get操作逻辑就很容易理解了，源码中的逻辑已经非常非常清晰了。</p>
-<p>需要注意的只有当找不到对应value时，返回的是null。或者value本身就是null。这是可以通过containsKey()来具体判断。</p>
-<p>了解了上面HashMap的put和get操作原理，可以通过下面这个小例题进行知识巩固，题目是打印在数组中出现n/2以上的元素，我们便可以使用HashMap的特性来解决。</p>
-<ol>
-<li><strong>public</strong> <strong>class</strong> HashMapTest {  </li>
-<li><strong>public</strong> <strong>static</strong> <strong>void</strong> main(String[] args) {  </li>
-<li>​    <strong>int</strong> [] a = {2,1,3,2,0,4,2,1,2,3,1,5,6,2,2,3};  </li>
-<li>​    Map&lt;Integer, Integer&gt; map = <strong>new</strong> HashMap&lt;Integer,Integer&gt;();  </li>
-<li>​    <strong>for</strong>(<strong>int</strong> i=0; i&lt;a.length; i++){  </li>
-<li>​      <strong>if</strong>(map.containsKey(a[i])){  </li>
-<li>​        <strong>int</strong> tmp = map.get(a[i]);  </li>
-<li>​        tmp+=1;  </li>
-<li>​        map.put(a[i], tmp);  </li>
-<li>​      }<strong>else</strong>{  </li>
-<li>​        map.put(a[i], 1);  </li>
-<li>​      }  </li>
-<li>​    }  </li>
-<li>​    Set<Integer> set = map.keySet();     </Integer></li>
-<li><strong>for</strong> (Integer s : set) {  </li>
-<li>​      <strong>if</strong>(map.get(s)&gt;=a.length/2){  </li>
-<li>​        System.out.println(s);  </li>
-<li>​      }  </li>
-<li>​    } </li>
-<li>}  </li>
-<li>}  </li>
-</ol>
-<p><strong>5.</strong>  <strong>HashMap和HashTable的对比</strong></p>
-<p>HashTable和HashMap采用相同的存储机制，二者的实现基本一致，不同的是：</p>
-<p>（1）HashMap是非线程安全的，HashTable是线程安全的，内部的方法基本都经过synchronized修饰。</p>
-<p>（2）因为同步、哈希性能等原因，性能肯定是HashMap更佳，因此HashTable已被淘汰。</p>
-<p>（3） HashMap允许有null值的存在，而在HashTable中put进的键值只要有一个null，直接抛出NullPointerException。</p>
-<p>（4）HashMap默认初始化数组的大小为16，HashTable为11。前者扩容时乘2，使用位运算取得哈希，效率高于取模。而后者为乘2加1，都是素数和奇数，这样取模哈希结果更均匀。</p>
-<p>这里本来我没有仔细看两者的具体哈希算法过程，打算粗略比较一下区别就过的，但是最近师姐面试美团移动开发时被问到了稍微具体一些的算法过程，我也是醉了…不过还是恭喜师姐面试成功，起薪20W，真是羡慕，希望自己一年后找工作也能顺顺利利的。</p>
-<p>言归正传，看下两种集合的hash算法。看源码也不难理解。</p>
-<ol>
-<li><pre><code>1. `//HashMap的散列函数，这里传入参数为键值对的key` 
-2. `**static** **final** **int** hash(Object key) {` 
-3.   `**int** h;` 
-4.   `**return** (key == **null**) ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt; 16);` 
-5. `}`  
-6. `//返回hash值的索引，h &amp; (length-1)操作等价于 hash % length操作， 但&amp;操作性能更优` 
-7. `**static** **int** indexFor(**int** h, **int** length) {` 
-8.   `// length must be a non-zero power of 2` 
-9.   `**return** h &amp; (length-1);` 
-10. `}` 
-11. `````` 
-12. `//HashTable的散列函数直接在put方法里实现了` 
-13. `**int** hash = key.hashCode();` 
-14. `**int** index = (hash &amp; 0x7FFFFFFF) % tab.length;` </code></pre></li>
-</ol>
-<p><strong>6.</strong>  <strong>HashTable和ConCurrentHashMap的对比</strong></p>
-<p>先对ConcurrentHashMap进行一些介绍吧，它是线程安全的HashMap的实现。</p>
-<p>HashTable里使用的是synchronized关键字，这其实是对对象加锁，锁住的都是对象整体，当Hashtable的大小增加到一定的时候，性能会急剧下降，因为迭代时需要被锁定很长的时间。</p>
-<p>ConcurrentHashMap算是对上述问题的优化，其构造函数如下，默认传入的是16，0.75，16。</p>
-<p>[java] <a href="https://blog.csdn.net/seu_calvin/article/details/52653711#" target="_blank" rel="noopener">view plain</a> <a href="https://blog.csdn.net/seu_calvin/article/details/52653711#" target="_blank" rel="noopener">copy</a></p>
-<ol>
-<li><strong>public</strong> ConcurrentHashMap(<strong>int</strong> paramInt1, <strong>float</strong> paramFloat, <strong>int</strong> paramInt2) {  </li>
-<li>//… </li>
-<li><strong>int</strong> i = 0;  </li>
-<li><strong>int</strong> j = 1;  </li>
-<li><strong>while</strong> (j &lt; paramInt2) {  </li>
-<li>++i;  </li>
-<li>j &lt;&lt;= 1;  </li>
-<li>}  </li>
-<li><strong>this</strong>.segmentShift = (32 - i);  </li>
-<li><strong>this</strong>.segmentMask = (j - 1);  </li>
-<li><strong>this</strong>.segments = Segment.newArray(j);  </li>
-<li>//… </li>
-<li><strong>int</strong> k = paramInt1 / j;  </li>
-<li><strong>if</strong> (k * j &lt; paramInt1)  </li>
-<li>++k;  </li>
-<li><strong>int</strong> l = 1;  </li>
-<li><strong>while</strong> (l &lt; k)  </li>
-<li>l &lt;&lt;= 1;  </li>
-<li></li>
-<li><strong>for</strong> (<strong>int</strong> i1 = 0; i1 &lt; <strong>this</strong>.segments.length; ++i1)  </li>
-<li><strong>this</strong>.segments[i1] = <strong>new</strong> Segment(l, paramFloat);  </li>
-<li>}  </li>
-<li></li>
-<li><strong>public</strong> V put(K paramK, V paramV) {  </li>
-<li><strong>if</strong> (paramV == <strong>null</strong>)  </li>
-<li><strong>throw</strong> <strong>new</strong> NullPointerException();  </li>
-<li><strong>int</strong> i = hash(paramK.hashCode()); //这里的hash函数和HashMap中的不一样 </li>
-<li><strong>return</strong> <strong>this</strong>.segments[(i &gt;&gt;&gt; <strong>this</strong>.segmentShift &amp; <strong>this</strong>.segmentMask)].put(paramK, i, paramV, <strong>false</strong>);  </li>
-<li>}  </li>
-</ol>
-<p>ConcurrentHashMap引入了分割(Segment)，上面代码中的最后一行其实就可以理解为把一个大的Map拆分成N个小的HashTable，在put方法中，会根据hash(paramK.hashCode())来决定具体存放进哪个Segment，如果查看Segment的put操作，我们会发现内部使用的同步机制是基于lock操作的，这样就可以对Map的一部分（Segment）进行上锁，这样影响的只是将要放入同一个Segment的元素的put操作，保证同步的时候，锁住的不是整个Map（HashTable就是这么做的），相对于HashTable提高了多线程环境下的性能，因此HashTable已经被淘汰了。</p>
-<p><strong>7.</strong>  <strong>HashMap和ConCurrentHashMap的对比</strong></p>
-<p>最后对这俩兄弟做个区别总结吧：</p>
-<p>（1）经过4.2的分析，我们知道ConcurrentHashMap对整个桶数组进行了分割分段(Segment)，然后在每一个分段上都用lock锁进行保护，相对于HashTable的syn关键字锁的粒度更精细了一些，并发性能更好，而HashMap没有锁机制，不是线程安全的。</p>
-<p>（2）HashMap的键值对允许有null，但是ConCurrentHashMap都不允许。</p>
-<p>至此对HashMap、HashTable以及ConCurrentHashMap异同比较总结完毕。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/01/%EF%BC%88%E4%BB%A3%E7%A0%81%EF%BC%89HashMap%E3%80%81Hashtable%E3%80%81ConcurrentHashMap%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8C%BA%E5%88%AB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-随机森林-Random-Forest" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/23/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-Random-Forest/">随机森林(Random Forest )</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/23/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-Random-Forest/" class="archive-article-date">
-  	<time datetime="2019-12-23T06:13:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>随机森林</strong>是一个具有高度灵活的机器学习算法，随机森林（Random Forest，简称RF）拥有广泛的应用前景,在当前的很多数据集上，相对其他算法有着很大的优势，表现良好.因为随机森林同决策树有着莫大的关系,建议读者先阅读<a href="https://blog.csdn.net/weixin_39445556/article/details/84500844" target="_blank" rel="noopener">决策树</a>相关的文章.</p>
-<p>​     其实从名字上我们就可以做一些联想.森林是什么,森林的主要构成就是树,很多很多的树,随机森林中的树就是决策树,所以随机森林就是由很多决策树构成的整体.那随机怎么理解呢?</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/23/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97-Random-Forest/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-逻辑回归-logistics-regression" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/23/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-logistics-regression/">逻辑回归(logistics regression)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/23/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-logistics-regression/" class="archive-article-date">
-  	<time datetime="2019-12-23T06:10:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> 多元线性回归是用线性的关系来拟合一个事情的发生规律,找到这个规律的表达公式,将得到的数据带入公式以用来实现预测的目的,我们习惯将这类预测未来的问题称作回归问题.机器学习中按照目的不同可以分为两大类:回归和分类.今天我们一起讨论的逻辑回归就可以用来完成分类任务. </p>
-<p><strong>一.分类和回归任务的区别</strong></p>
-<p>​    我们可以按照任务的种类,将任务分为回归任务和分类任务.那这两者的区别是什么呢?按照较官方些的说法,输入变量与输出变量均为连续变量的预测问题是回归问题,输出变量为有限个离散变量的预测问题成为分类问题.</p>
-<p>​    通俗一点讲,我们要预测的结果是一个数,比如要通过一个人的饮食预测一个人的体重,体重的值可以有无限多个,有的人50kg,有的人51kg,在50和51之间也有无限多个数.这种预测结果是某一个确定数,而具体是哪个数有无限多种可能的问题,我们会训练出一个模型,传入参数后得到这个确定的数,这类问题我们称为回归问题.预测的这个变量(体重)因为有无限多种可能,在数轴上是连续的,所以我们称这种变量为连续变量.</p>
-<p>​    我们要预测一个人身体健康或者不健康,预测会得癌症或者不会得癌症,预测他是水瓶座,天蝎座还是射手座,这种结果只有几个值或者多个值的问题,我们可以把每个值都当做一类,预测对象到底属于哪一类.这样的问题称为分类问题.如果一个分类问题的结果只有两个,比如”是”和”不是”两个结果,我们把结果为”是”的样例数据称为”正例”,讲结果为”不是”的样例数据称为”负例”,对应的,这种结果的变量称为离散型变量.</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/23/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-logistics-regression/">展开全文 >></a>
         </p>
       
 
